@@ -7,10 +7,297 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-      body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;}
+        /* === PREMIUM DESIGN SYSTEM === */
+        :root {
+            /* Brand Color Palette */
+            --primary: #1a365d;
+            --primary-dark: #0f2040;
+            --primary-light: #2d4a7c;
+            --accent: #d4af37;
+            --accent-dark: #b8941f;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+            --background: #ffffff;
+            --surface: #f7fafc;
+            --border: #e2e8f0;
+            --success: #38a169;
+            --warning: #e53e3e;
+            --danger: #e53e3e;
+            /* Spacing Scale */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.15);
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-primary); line-height: 1.6; color: var(--text-primary); background-color: var(--surface); overflow-x: hidden; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 var(--space-md); }
+        h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: var(--space-lg); }
+        h2 { font-size: 2rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.25px; margin-bottom: var(--space-lg); }
+        h3 { font-size: 1.5rem; font-weight: 600; line-height: 1.4; margin-bottom: var(--space-md); }
+        h4 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; margin-bottom: var(--space-md); }
+        .body-large { font-size: 1.125rem; line-height: 1.6; font-weight: 400; margin-bottom: var(--space-md); }
+        .body-medium { font-size: 1rem; line-height: 1.5; font-weight: 400; margin-bottom: var(--space-md); }
+        .body-small { font-size: 0.875rem; line-height: 1.4; font-weight: 400; margin-bottom: var(--space-sm); }
+        .caption { font-size: 0.75rem; line-height: 1.3; font-weight: 400; color: var(--text-light); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-decoration: none; white-space: nowrap; font-family: var(--font-primary); gap: var(--space-sm); }
+        .btn:focus { outline: 2px solid var(--primary-light); outline-offset: 2px; }
+        .btn-primary { height: 48px; padding: 0 var(--space-lg); font-size: 1rem; font-weight: 600; background: var(--primary); color: white; min-width: 140px; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-accent { height: 48px; padding: 0 var(--space-lg); font-size: 1rem; font-weight: 600; background: var(--accent); color: var(--primary); min-width: 140px; }
+        .btn-accent:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-secondary { height: 44px; padding: 0 var(--space-md); font-size: 0.9375rem; font-weight: 500; background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .btn-secondary:hover { background: var(--primary); color: white; }
+        .btn-danger { height: 44px; padding: 0 var(--space-md); font-size: 0.9375rem; font-weight: 500; background: var(--danger); color: white; border: 2px solid var(--danger); }
+        .btn-danger:hover { background: #c53030; border-color: #c53030; }
+        .btn-small { height: 36px; padding: 0 var(--space-md); font-size: 0.875rem; font-weight: 500; }
+        .admin-layout { display: flex; min-height: 100vh; }
+        .admin-sidebar { width: 250px; background: var(--primary); color: white; padding: var(--space-xl) 0; position: fixed; height: 100vh; overflow-y: auto; }
+        .admin-content { flex: 1; margin-left: 250px; padding: var(--space-xl); }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-2xl); padding-bottom: var(--space-lg); border-bottom: 1px solid var(--border); }
+        .admin-title { color: var(--primary); }
+        .sidebar-header { padding: 0 var(--space-lg) var(--space-xl); border-bottom: 1px solid var(--primary-light); margin-bottom: var(--space-lg); }
+        .sidebar-logo { font-size: 1.5rem; font-weight: 700; color: white; }
+        .sidebar-logo-accent { color: var(--accent); }
+        .sidebar-nav { list-style: none; }
+        .nav-item { margin-bottom: var(--space-xs); }
+        .nav-link { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md) var(--space-lg); color: #cbd5e0; text-decoration: none; transition: all 0.2s; border-left: 3px solid transparent; }
+        .nav-link:hover, .nav-link.active { background: var(--primary-light); color: white; border-left-color: var(--accent); }
+        .nav-link i { width: 20px; text-align: center; }
+        .admin-card { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-lg); overflow: hidden; }
+        .card-header { padding: var(--space-lg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .card-body { padding: var(--space-lg); }
+        .card-footer { padding: var(--space-lg); border-top: 1px solid var(--border); background: var(--surface); }
+        .admin-table { width: 100%; border-collapse: collapse; }
+        .admin-table th { text-align: left; padding: var(--space-md); background: var(--surface); border-bottom: 1px solid var(--border); font-weight: 600; color: var(--text-secondary); }
+        .admin-table td { padding: var(--space-md); border-bottom: 1px solid var(--border); }
+        .admin-table tr:hover { background: var(--surface); }
+        .table-actions { display: flex; gap: var(--space-sm); }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-lg); }
+        .input-group { display: flex; flex-direction: column; }
+        .form-label { font-size: 0.875rem; font-weight: 500; margin-bottom: var(--space-xs); color: var(--text-secondary); }
+        .form-input, .form-select, .form-textarea { height: 48px; padding: 0 var(--space-md); border: 2px solid var(--border); border-radius: var(--radius-md); font-size: 1rem; transition: border-color 0.2s; font-family: var(--font-primary); }
+        .form-textarea { height: 120px; padding: var(--space-md); resize: vertical; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); outline: none; }
+        .form-row { display: flex; gap: var(--space-md); margin-bottom: var(--space-md); }
+        .customizer-manager { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); margin-bottom: var(--space-lg); overflow: hidden; }
+        .manager-section { padding: var(--space-lg); border-bottom: 1px solid var(--border); }
+        .manager-section:last-child { border-bottom: none; }
+        .visibility-controls { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+        .visibility-item { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--surface); border-radius: var(--radius-md); border: 2px solid var(--border); transition: all 0.2s; }
+        .visibility-item:hover { border-color: var(--primary-light); }
+        .visibility-item.selected { border-color: var(--accent); background: rgba(212, 175, 55, 0.1); }
+        .item-info { flex: 1; }
+        .item-name { font-weight: 600; margin-bottom: var(--space-xs); }
+        .item-details { font-size: 0.875rem; color: var(--text-secondary); }
+        .visibility-toggle { display: flex; align-items: center; gap: var(--space-sm); }
+        .toggle-switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+        .toggle-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .toggle-slider { background-color: var(--success); }
+        input:checked + .toggle-slider:before { transform: translateX(26px); }
+        .package-builder { background: var(--surface); border-radius: var(--radius-lg); padding: var(--space-lg); margin-bottom: var(--space-lg); }
+        .package-tier { background: white; border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-lg); border-left: 4px solid var(--accent); }
+        .tier-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md); }
+        .tier-title { font-size: 1.25rem; font-weight: 600; color: var(--primary); }
+        .selection-preview { background: var(--surface); border-radius: var(--radius-md); padding: var(--space-md); margin-bottom: var(--space-md); }
+        .selection-item { display: flex; justify-content: space-between; padding: var(--space-sm) 0; border-bottom: 1px solid var(--border); }
+        .selection-item:last-child { border-bottom: none; }
+        .departure-management { background: var(--surface); border-radius: var(--radius-lg); padding: var(--space-lg); margin-bottom: var(--space-lg); }
+        .departure-item { background: white; border-radius: var(--radius-md); padding: var(--space-md); margin-bottom: var(--space-md); display: flex; justify-content: space-between; align-items: center; }
+        .departure-info { display: flex; flex-direction: column; }
+        .image-upload { border: 2px dashed var(--border); border-radius: var(--radius-md); padding: var(--space-xl); text-align: center; margin-bottom: var(--space-md); cursor: pointer; transition: all 0.3s; }
+        .image-upload:hover { border-color: var(--primary); background: var(--surface); }
+        .image-upload-icon { font-size: 2rem; color: var(--text-light); margin-bottom: var(--space-md); }
+        .image-preview { max-width: 100%; max-height: 200px; border-radius: var(--radius-md); margin-top: var(--space-md); display: none; }
+        .activity-plan-editor { background: white; border-radius: var(--radius-md); padding: var(--space-lg); margin-bottom: var(--space-lg); }
+        .day-plan { margin-bottom: var(--space-lg); padding-bottom: var(--space-md); border-bottom: 1px solid var(--border); }
+        .day-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md); }
+        .activity-item { display: flex; gap: var(--space-md); margin-bottom: var(--space-md); padding: var(--space-md); background: var(--surface); border-radius: var(--radius-md); }
+        .activity-time { font-weight: 600; color: var(--primary); min-width: 80px; }
+        .activity-details { flex: 1; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: var(--space-md); }
+        .modal { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; }
+        .modal-header { padding: var(--space-lg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); }
+        .modal-body { padding: var(--space-lg); }
+        .modal-footer { padding: var(--space-lg); border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: var(--space-md); }
+        .preview-section { background: var(--surface); border-radius: var(--radius-lg); padding: var(--space-lg); margin-top: var(--space-lg); }
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-md); margin-top: var(--space-md); }
+        .preview-card { background: white; border-radius: var(--radius-md); padding: var(--space-md); border: 2px solid var(--border); }
+        @media (max-width: 1024px) { .admin-sidebar { width: 200px; } .admin-content { margin-left: 200px; } }
+        @media (max-width: 768px) {
+            .admin-layout { flex-direction: column; }
+            .admin-sidebar { width: 100%; height: auto; position: relative; }
+            .admin-content { margin-left: 0; }
+            .form-grid { grid-template-columns: 1fr; }
+            .table-actions { flex-direction: column; }
+            .visibility-controls { grid-template-columns: 1fr; }
+            .departure-item { flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+        }
     </style>
 </head>
 <body>
-    <!-- Inject your full admin HTML here (truncated for brevity in commit). -->
+    <div class="admin-layout">
+        <div class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">Hache<span class="sidebar-logo-accent">Viajes</span> Admin</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-item"><a href="#" class="nav-link active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="customizer-manager"><i class="fas fa-sliders-h"></i>Trip Customizer Manager</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="destinations"><i class="fas fa-map-marker-alt"></i>Destinations</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="departures"><i class="fas fa-plane-departure"></i>Departure Cities</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="packages"><i class="fas fa-suitcase"></i>Packages</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="flights"><i class="fas fa-plane"></i>Flights</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="hotels"><i class="fas fa-hotel"></i>Hotels</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="activities"><i class="fas fa-hiking"></i>Activities</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" data-tab="bookings"><i class="fas fa-receipt"></i>Bookings</a></li>
+            </ul>
+        </div>
+        <div class="admin-content">
+            <div class="admin-tab active" id="dashboard">
+                <div class="admin-header">
+                    <h1 class="admin-title">Admin Dashboard</h1>
+                    <div class="admin-actions"><button class="btn btn-primary" onclick="showModal('syncModal')"><i class="fas fa-sync-alt"></i>Sync Providers</button></div>
+                </div>
+                <div class="form-grid">
+                    <div class="admin-card"><div class="card-header"><h3>Quick Stats</h3></div><div class="card-body"><div class="form-grid">
+                        <div class="input-group"><div class="body-large">15</div><div class="form-label">Active Destinations</div></div>
+                        <div class="input-group"><div class="body-large">42</div><div class="form-label">Flight Options</div></div>
+                        <div class="input-group"><div class="body-large">28</div><div class="form-label">Hotel Partners</div></div>
+                        <div class="input-group"><div class="body-large">67</div><div class="form-label">Activities</div></div>
+                    </div></div></div>
+                    <div class="admin-card"><div class="card-header"><h3>Recent Bookings</h3></div><div class="card-body">
+                        <table class="admin-table"><thead><tr><th>Booking ID</th><th>Customer</th><th>Destination</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+                            <tr><td>#HV-2023-0012</td><td>Sarah Johnson</td><td>Bali, Indonesia</td><td>$2,499</td><td><span style="color: var(--success);">Confirmed</span></td></tr>
+                            <tr><td>#HV-2023-0011</td><td>Michael Chen</td><td>Kyoto, Japan</td><td>$3,199</td><td><span style="color: var(--success);">Confirmed</span></td></tr>
+                        </tbody></table>
+                    </div></div>
+                </div>
+            </div>
+            <div class="admin-tab" id="customizer-manager">
+                <div class="admin-header"><h1 class="admin-title">Trip Customizer Manager</h1><p class="body-medium">Configure what customers see in the "Customize Your Trip" page</p></div>
+                <div class="customizer-manager">
+                    <div class="manager-section"><h3>Destination Visibility</h3><p class="body-medium">Select which destinations appear in the trip customizer dropdown</p><div class="visibility-controls" id="destination-visibility"></div></div>
+                    <div class="manager-section"><h3>Activity Visibility</h3><p class="body-medium">Select which activities appear in the trip customizer</p><div class="visibility-controls" id="activity-visibility"></div></div>
+                    <div class="manager-section"><h3>Featured Packages</h3><p class="body-medium">Select which packages are featured in the trip customizer</p><div class="visibility-controls" id="package-visibility"></div></div>
+                    <div class="card-footer"><button class="btn btn-accent" onclick="saveCustomizerSettings()"><i class="fas fa-save"></i>Save Customizer Settings</button><button class="btn btn-secondary" onclick="previewCustomizer()"><i class="fas fa-eye"></i>Preview Customizer</button></div>
+                </div>
+                <div class="preview-section" id="customizer-preview" style="display: none;"><h3>Customizer Preview</h3><p class="body-medium">This is how the trip customizer will appear to customers</p><div class="preview-grid">
+                    <div class="preview-card"><h4>Available Destinations</h4><div id="preview-destinations"></div></div>
+                    <div class="preview-card"><h4>Available Activities</h4><div id="preview-activities"></div></div>
+                    <div class="preview-card"><h4>Featured Packages</h4><div id="preview-packages"></div></div>
+                </div></div>
+            </div>
+            <div class="admin-tab" id="destinations">
+                <div class="admin-header"><h1 class="admin-title">Destinations Management</h1><button class="btn btn-primary" onclick="showModal('destinationModal')"><i class="fas fa-plus"></i>Add Destination</button></div>
+                <div class="admin-card"><div class="card-body">
+                    <table class="admin-table"><thead><tr><th>Name</th><th>Country</th><th>Visible in Customizer</th><th>Status</th><th>Packages</th><th>Actions</th></tr></thead><tbody id="destinationsTable"></tbody></table>
+                </div></div>
+            </div>
+            <div class="admin-tab" id="departures">
+                <div class="admin-header"><h1 class="admin-title">Departure Cities Management</h1><button class="btn btn-primary" onclick="showModal('departureModal')"><i class="fas fa-plus"></i>Add Departure City</button></div>
+                <div class="admin-card"><div class="card-header"><h3>Available Departure Cities</h3><p class="body-small">Manage cities from which travelers can depart</p></div><div class="card-body"><div class="departure-management"><div id="departuresList"></div></div></div></div>
+                <div class="admin-card"><div class="card-header"><h3>Destination - Departure Mapping</h3><p class="body-small">Set which departure cities are available for each destination</p></div><div class="card-body">
+                    <div class="form-grid"><div class="input-group"><label class="form-label">Select Destination</label><select class="form-select" id="destinationForDepartures" onchange="loadDestinationDepartures()"><option value="">Choose a destination</option></select></div></div>
+                    <div id="destinationDepartures" style="display: none;"><h4>Available Departure Cities</h4><div id="departureMappingList"></div><button class="btn btn-secondary" onclick="showModal('addDepartureMappingModal')"><i class="fas fa-plus"></i>Add Departure City</button></div>
+                </div></div>
+            </div>
+            <div class="admin-tab" id="packages">
+                <div class="admin-header"><h1 class="admin-title">Packages Management</h1><button class="btn btn-primary" onclick="showModal('packageModal')"><i class="fas fa-plus"></i>Create Package</button></div>
+                <div class="admin-card"><div class="card-header"><h3>Package Builder</h3><p class="body-small">Create 3-tier packages for each destination (Economy, Premium, Luxury)</p></div><div class="card-body">
+                    <div class="package-builder">
+                        <div class="form-grid"><div class="input-group"><label class="form-label">Select Destination</label><select class="form-select" id="packageDestination" onchange="loadDestinationPackages()"><option value="">Choose a destination</option></select></div><div class="input-group"><label class="form-label">Package Name</label><input type="text" class="form-input" id="packageName" placeholder="e.g., Bali Paradise Escape"></div></div>
+                        <div class="input-group"><label class="form-label">Package Cover Image (PNG)</label><div class="image-upload" onclick="document.getElementById('packageCoverUpload').click()"><div class="image-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div><p class="body-medium">Click to upload package cover (PNG)</p><p class="caption">Recommended: 800x600px, PNG format</p><img id="packageCoverPreview" class="image-preview" alt="Package cover preview"></div><input type="file" id="packageCoverUpload" accept=".png" style="display: none;" onchange="previewImage(this, 'packageCoverPreview')"></div>
+                        <div class="package-tier"><div class="tier-header"><div class="tier-title">Economy Package</div><div class="tier-price">$0</div></div><div class="selection-preview"><h4>Flight Selection</h4><div class="input-group"><select class="form-select" id="economyFlight"><option value="">Select Economy Flight</option></select></div><h4>Hotel Selection</h4><div class="input-group"><select class="form-select" id="economyHotel"><option value="">Select Economy Hotel</option></select></div><h4>Activity Selections</h4><div id="economyActivities"></div><button class="btn btn-secondary btn-small" onclick="addActivityToPackage('economy')"><i class="fas fa-plus"></i> Add Activity</button></div></div>
+                        <div class="package-tier"><div class="tier-header"><div class="tier-title">Premium Package</div><div class="tier-price">$0</div></div><div class="selection-preview"><h4>Flight Selection</h4><div class="input-group"><select class="form-select" id="premiumFlight"><option value="">Select Premium Flight</option></select></div><h4>Hotel Selection</h4><div class="input-group"><select class="form-select" id="premiumHotel"><option value="">Select Premium Hotel</option></select></div><h4>Activity Selections</h4><div id="premiumActivities"></div><button class="btn btn-secondary btn-small" onclick="addActivityToPackage('premium')"><i class="fas fa-plus"></i> Add Activity</button></div></div>
+                        <div class="package-tier"><div class="tier-header"><div class="tier-title">Luxury Package</div><div class="tier-price">$0</div></div><div class="selection-preview"><h4>Flight Selection</h4><div class="input-group"><select class="form-select" id="luxuryFlight"><option value="">Select Luxury Flight</option></select></div><h4>Hotel Selection</h4><div class="input-group"><select class="form-select" id="luxuryHotel"><option value="">Select Luxury Hotel</option></select></div><h4>Activity Selections</h4><div id="luxuryActivities"></div><button class="btn btn-secondary btn-small" onclick="addActivityToPackage('luxury')"><i class="fas fa-plus"></i> Add Activity</button></div></div>
+                        <div class="activity-plan-editor"><h3>Activity Plan</h3><p class="body-small">Create detailed daily itinerary for this package</p><div id="activityPlanDays"></div><button class="btn btn-secondary" onclick="addActivityDay()"><i class="fas fa-plus"></i> Add Day</button></div>
+                    </div>
+                </div></div>
+                <div class="card-footer"><button class="btn btn-accent" onclick="savePackage()"><i class="fas fa-save"></i>Save Package</button></div>
+                <div class="admin-card"><div class="card-header"><h3>Existing Packages</h3></div><div class="card-body"><table class="admin-table"><thead><tr><th>Package</th><th>Destination</th><th>Featured</th><th>Economy</th><th>Premium</th><th>Luxury</th><th>Cover</th><th>Actions</th></tr></thead><tbody id="packagesTable"></tbody></table></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="destinationModal" style="display: none;"><div class="modal"><div class="modal-header"><h3>Add New Destination</h3><button class="modal-close" onclick="hideModal('destinationModal')">&times;</button></div><div class="modal-body"><div class="form-grid">
+        <div class="input-group"><label class="form-label">Destination Name</label><input type="text" class="form-input" id="destinationName" placeholder="e.g., Bali, Indonesia"></div>
+        <div class="input-group"><label class="form-label">Country</label><input type="text" class="form-input" id="destinationCountry" placeholder="e.g., Indonesia"></div>
+        <div class="input-group"><label class="form-label">Description</label><textarea class="form-textarea" id="destinationDescription" placeholder="Describe this destination..."></textarea></div>
+        <div class="input-group"><label class="form-label">Available Departure Cities</label><div id="departureCitiesSelection"></div></div>
+        <div class="input-group"><label class="form-label">Visible in Customizer</label><select class="form-select" id="destinationVisible"><option value="true">Yes</option><option value="false">No</option></select></div>
+        <div class="input-group"><label class="form-label">Status</label><select class="form-select" id="destinationStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+    </div></div><div class="modal-footer"><button class="btn btn-secondary" onclick="hideModal('destinationModal')">Cancel</button><button class="btn btn-primary" onclick="saveDestination()">Save Destination</button></div></div></div>
+    <div class="modal-overlay" id="syncModal" style="display: none;"><div class="modal"><div class="modal-header"><h3>Sync with Providers</h3><button class="modal-close" onclick="hideModal('syncModal')">&times;</button></div><div class="modal-body"><p class="body-medium">This will sync your inventory with all connected providers:</p><ul style="margin: var(--space-md) 0; padding-left: var(--space-lg);"><li class="body-small">Flight providers (10 connected)</li><li class="body-small">Hotel partners (28 connected)</li><li class="body-small">Activity providers (15 connected)</li></ul><div class="input-group"><label class="form-label">Sync Type</label><select class="form-select" id="syncType"><option value="full">Full Sync (All Data)</option><option value="incremental">Incremental Sync (Changes Only)</option></select></div></div><div class="modal-footer"><button class="btn btn-secondary" onclick="hideModal('syncModal')">Cancel</button><button class="btn btn-primary" onclick="startSync()"><i class="fas fa-sync-alt"></i>Start Sync</button></div></div></div>
+
+    <script>
+      let adminData = { customizerSettings:{ visibleDestinations:[1,2,3], visibleActivities:[1,2,3], featuredPackages:[1] }, departureCities:[{id:1,name:"New York",country:"United States",airportCode:"JFK",status:"active"},{id:2,name:"Los Angeles",country:"United States",airportCode:"LAX",status:"active"},{id:3,name:"London",country:"United Kingdom",airportCode:"LHR",status:"active"}], destinations:[{id:1,name:"Bali, Indonesia",country:"Indonesia",status:"active",packages:3,departureCities:[1,2,3],visibleInCustomizer:true},{id:2,name:"Kyoto, Japan",country:"Japan",status:"active",packages:3,departureCities:[1,3],visibleInCustomizer:true},{id:3,name:"Paris, France",country:"France",status:"active",packages:3,departureCities:[1,2],visibleInCustomizer:true}], flights:[{id:1,airline:"Emirates",class:"economy",route:"NYC → BAL",price:650,duration:"14h 30m",status:"active"},{id:2,airline:"Singapore Airlines",class:"premium",route:"LAX → KIX",price:950,duration:"12h 45m",status:"active"}], hotels:[{id:1,name:"Comfort Inn Bali",location:"Bali, Indonesia",stars:3,price:120,amenities:"Pool, WiFi, Breakfast",status:"active"},{id:2,name:"Luxury Resort Kyoto",location:"Kyoto, Japan",stars:5,price:220,amenities:"Spa, Pool, All meals",status:"active"}], activities:[{id:1,name:"City Tour",location:"Bali, Indonesia",type:"Sightseeing",duration:"4 hours",price:75,status:"active",visibleInCustomizer:true},{id:2,name:"Cooking Class",location:"Kyoto, Japan",type:"Cultural",duration:"3 hours",price:120,status:"active",visibleInCustomizer:true},{id:3,name:"Boat Excursion",location:"Bali, Indonesia",type:"Adventure",duration:"5 hours",price:95,status:"active",visibleInCustomizer:true}], packages:[{id:1,name:"Bali Paradise Escape",destination:"Bali, Indonesia",economy:2499,premium:3499,luxury:4999,status:"active",featured:true,coverImage:"https://example.com/bali-cover.png",activityPlan:[]},{id:2,name:"Kyoto Cultural Journey",destination:"Kyoto, Japan",economy:3199,premium:4299,luxury:5899,status:"active",featured:false,coverImage:"https://example.com/kyoto-cover.png",activityPlan:[]}], bookings:[{id:"HV-2023-0012",customer:"Sarah Johnson",package:"Bali Luxury",destination:"Bali, Indonesia",dates:"2023-11-15 to 2023-11-22",amount:4999,status:"confirmed"}] };
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tab = this.getAttribute('data-tab');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            if (tab === 'departures') { loadDepartureCities(); populateDestinationSelect('destinationForDepartures'); }
+            else if (tab === 'packages') { populatePackageBuilder(); }
+            else if (tab === 'customizer-manager') { loadCustomizerManager(); }
+          });
+        });
+        loadDestinations(); loadFlights(); loadHotels(); loadActivities(); loadPackages(); loadDepartureCities(); loadBookings(); populatePackageBuilder(); populateDestinationSelect('destinationForDepartures'); loadCustomizerManager();
+      });
+      function loadCustomizerManager(){ loadDestinationVisibility(); loadActivityVisibility(); loadPackageVisibility(); }
+      function loadDestinationVisibility(){ const c=document.getElementById('destination-visibility'); c.innerHTML=''; adminData.destinations.forEach(d=>{ const v=adminData.customizerSettings.visibleDestinations.includes(d.id); const item=document.createElement('div'); item.className=`visibility-item ${v?'selected':''}`; item.innerHTML=`<div class="item-info"><div class="item-name">${d.name}</div><div class="item-details">${d.country} • ${d.packages} packages</div></div><div class="visibility-toggle"><label class="toggle-switch"><input type="checkbox" ${v?'checked':''} onchange="toggleDestinationVisibility(${d.id}, this.checked)"><span class="toggle-slider"></span></label><span>${v?'Visible':'Hidden'}</span></div>`; c.appendChild(item); }); }
+      function loadActivityVisibility(){ const c=document.getElementById('activity-visibility'); c.innerHTML=''; adminData.activities.forEach(a=>{ const v=adminData.customizerSettings.visibleActivities.includes(a.id); const item=document.createElement('div'); item.className=`visibility-item ${v?'selected':''}`; item.innerHTML=`<div class="item-info"><div class="item-name">${a.name}</div><div class="item-details">${a.type} • ${a.duration} • $${a.price}</div></div><div class="visibility-toggle"><label class="toggle-switch"><input type="checkbox" ${v?'checked':''} onchange="toggleActivityVisibility(${a.id}, this.checked)"><span class="toggle-slider"></span></label><span>${v?'Visible':'Hidden'}</span></div>`; c.appendChild(item); }); }
+      function loadPackageVisibility(){ const c=document.getElementById('package-visibility'); c.innerHTML=''; adminData.packages.forEach(p=>{ const v=adminData.customizerSettings.featuredPackages.includes(p.id); const item=document.createElement('div'); item.className=`visibility-item ${v?'selected':''}`; item.innerHTML=`<div class="item-info"><div class="item-name">${p.name}</div><div class="item-details">${p.destination} • $${p.economy} - $${p.luxury}</div></div><div class="visibility-toggle"><label class="toggle-switch"><input type="checkbox" ${v?'checked':''} onchange="togglePackageVisibility(${p.id}, this.checked)"><span class="toggle-slider"></span></label><span>${v?'Featured':'Not Featured'}</span></div>`; c.appendChild(item); }); }
+      function toggleDestinationVisibility(id,vis){ const el=document.querySelector(`#destination-visibility .visibility-item input[onchange="toggleDestinationVisibility(${id}, this.checked)"]`).closest('.visibility-item'); if(vis){ if(!adminData.customizerSettings.visibleDestinations.includes(id)) adminData.customizerSettings.visibleDestinations.push(id); el.classList.add('selected'); el.querySelector('.visibility-toggle span').textContent='Visible'; } else { adminData.customizerSettings.visibleDestinations=adminData.customizerSettings.visibleDestinations.filter(x=>x!==id); el.classList.remove('selected'); el.querySelector('.visibility-toggle span').textContent='Hidden'; } }
+      function toggleActivityVisibility(id,vis){ const el=document.querySelector(`#activity-visibility .visibility-item input[onchange="toggleActivityVisibility(${id}, this.checked)"]`).closest('.visibility-item'); if(vis){ if(!adminData.customizerSettings.visibleActivities.includes(id)) adminData.customizerSettings.visibleActivities.push(id); el.classList.add('selected'); el.querySelector('.visibility-toggle span').textContent='Visible'; } else { adminData.customizerSettings.visibleActivities=adminData.customizerSettings.visibleActivities.filter(x=>x!==id); el.classList.remove('selected'); el.querySelector('.visibility-toggle span').textContent='Hidden'; } }
+      function togglePackageVisibility(id,vis){ const el=document.querySelector(`#package-visibility .visibility-item input[onchange="togglePackageVisibility(${id}, this.checked)"]`).closest('.visibility-item'); if(vis){ if(!adminData.customizerSettings.featuredPackages.includes(id)) adminData.customizerSettings.featuredPackages.push(id); el.classList.add('selected'); el.querySelector('.visibility-toggle span').textContent='Featured'; } else { adminData.customizerSettings.featuredPackages=adminData.customizerSettings.featuredPackages.filter(x=>x!==id); el.classList.remove('selected'); el.querySelector('.visibility-toggle span').textContent='Not Featured'; } }
+      function saveCustomizerSettings(){ adminData.destinations.forEach(d=>{ d.visibleInCustomizer=adminData.customizerSettings.visibleDestinations.includes(d.id); }); adminData.activities.forEach(a=>{ a.visibleInCustomizer=adminData.customizerSettings.visibleActivities.includes(a.id); }); adminData.packages.forEach(p=>{ p.featured=adminData.customizerSettings.featuredPackages.includes(p.id); }); alert('Customizer settings saved successfully!'); loadDestinations(); loadActivities(); loadPackages(); }
+      function previewCustomizer(){ const s=document.getElementById('customizer-preview'); const pd=document.getElementById('preview-destinations'); const pa=document.getElementById('preview-activities'); const pp=document.getElementById('preview-packages'); pd.innerHTML=''; adminData.customizerSettings.visibleDestinations.forEach(id=>{ const d=adminData.destinations.find(x=>x.id===id); if(d){ const div=document.createElement('div'); div.className='body-small'; div.style.padding='var(--space-xs) 0'; div.textContent=d.name; pd.appendChild(div);} }); pa.innerHTML=''; adminData.customizerSettings.visibleActivities.forEach(id=>{ const a=adminData.activities.find(x=>x.id===id); if(a){ const div=document.createElement('div'); div.className='body-small'; div.style.padding='var(--space-xs) 0'; div.textContent=`${a.name} (${a.type})`; pa.appendChild(div);} }); pp.innerHTML=''; adminData.customizerSettings.featuredPackages.forEach(id=>{ const p=adminData.packages.find(x=>x.id===id); if(p){ const div=document.createElement('div'); div.className='body-small'; div.style.padding='var(--space-xs) 0'; div.textContent=`${p.name} - $${p.economy}`; pp.appendChild(div);} }); s.style.display='block'; s.scrollIntoView({behavior:'smooth'}); }
+      function showModal(id){ document.getElementById(id).style.display='flex'; if(id==='destinationModal'){ populateDepartureCitiesSelection(); } }
+      function hideModal(id){ document.getElementById(id).style.display='none'; }
+      function previewImage(input, previewId){ const p=document.getElementById(previewId); const f=input.files[0]; if(f){ const r=new FileReader(); r.onload=function(e){ p.src=e.target.result; p.style.display='block'; }; r.readAsDataURL(f);} }
+      function loadDestinations(){ const t=document.getElementById('destinationsTable'); if(!t) return; t.innerHTML=''; adminData.destinations.forEach(d=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${d.name}</td><td>${d.country}</td><td><span style="color: ${d.visibleInCustomizer?'var(--success)':'var(--warning)'}">${d.visibleInCustomizer?'Yes':'No'}</span></td><td><span style="color: ${d.status==='active'?'var(--success)':'var(--warning)'}">${d.status}</span></td><td>${d.packages}</td><td class="table-actions"><button class="btn btn-secondary btn-small" onclick="editDestination(${d.id})"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-danger btn-small" onclick="deleteDestination(${d.id})"><i class="fas fa-trash"></i> Delete</button></td>`; t.appendChild(tr); }); }
+      function loadActivities(){ const t=document.getElementById('activitiesTable'); if(!t) return; t.innerHTML=''; adminData.activities.forEach(a=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${a.name}</td><td>${a.location}</td><td>${a.type}</td><td>${a.duration}</td><td>$${a.price}</td><td><span style="color: ${a.visibleInCustomizer?'var(--success)':'var(--warning)'}">${a.visibleInCustomizer?'Yes':'No'}</span></td><td><span style="color: ${a.status==='active'?'var(--success)':'var(--warning)'}">${a.status}</span></td><td class="table-actions"><button class="btn btn-secondary btn-small" onclick="editActivity(${a.id})"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-danger btn-small" onclick="deleteActivity(${a.id})"><i class="fas fa-trash"></i> Delete</button></td>`; t.appendChild(tr); }); }
+      function loadPackages(){ const t=document.getElementById('packagesTable'); if(!t) return; t.innerHTML=''; adminData.packages.forEach(p=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${p.name}</td><td>${p.destination}</td><td><span style="color: ${p.featured?'var(--success)':'var(--warning)'}">${p.featured?'Yes':'No'}</span></td><td>$${p.economy}</td><td>$${p.premium}</td><td>$${p.luxury}</td><td>${p.coverImage?'<i class="fas fa-check" style="color: var(--success);"></i>':'<i class="fas fa-times" style="color: var(--warning);"></i>'}</td><td class="table-actions"><button class="btn btn-secondary btn-small" onclick="editPackage(${p.id})"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-danger btn-small" onclick="deletePackage(${p.id})"><i class="fas fa-trash"></i> Delete</button></td>`; t.appendChild(tr); }); }
+      function saveDestination(){ alert('Destination saved successfully!'); hideModal('destinationModal'); loadDestinations(); loadCustomizerManager(); }
+      function startSync(){ alert('Sync started with all providers! This may take a few minutes.'); hideModal('syncModal'); }
+      function editDestination(id){ alert(`Editing destination with ID: ${id}`); }
+      function deleteDestination(id){ if(confirm('Are you sure you want to delete this destination?')){ alert(`Destination with ID: ${id} deleted`); loadDestinations(); loadCustomizerManager(); } }
+      function editActivity(id){ alert(`Editing activity with ID: ${id}`); }
+      function deleteActivity(id){ if(confirm('Are you sure you want to delete this activity?')){ alert(`Activity with ID: ${id} deleted`); loadActivities(); loadCustomizerManager(); } }
+      function editPackage(id){ alert(`Editing package with ID: ${id}`); }
+      function deletePackage(id){ if(confirm('Are you sure you want to delete this package?')){ alert(`Package with ID: ${id} deleted`); loadPackages(); loadCustomizerManager(); } }
+      function loadFlights(){} function loadHotels(){} function loadBookings(){}
+      function populateDestinationSelect(id){ const s=document.getElementById(id); if(!s) return; s.innerHTML='<option value="">Choose a destination</option>'+adminData.destinations.map(d=>`<option value="${d.id}">${d.name}</option>`).join(''); }
+      function loadDepartureCities(){ const c=document.getElementById('departuresList'); if(!c) return; c.innerHTML=adminData.departureCities.map(dc=>`<div class="departure-item"><div class="departure-info"><div class="body-medium">${dc.name} (${dc.airportCode})</div><div class="caption">${dc.country}</div></div><div class="table-actions"><button class="btn btn-secondary btn-small"><i class="fas fa-edit"></i> Edit</button><button class="btn btn-danger btn-small"><i class="fas fa-trash"></i> Delete</button></div></div>`).join(''); }
+      function loadDestinationDepartures(){}
+      function addActivityToPackage(tier){}
+      function addActivityDay(){ const c=document.getElementById('activityPlanDays'); const idx=(c.children.length||0)+1; const day=document.createElement('div'); day.className='day-plan'; day.innerHTML=`<div class='day-header'><h4>Day ${idx}</h4><button class='btn btn-secondary btn-small' onclick='this.closest(".day-plan").remove()'>Remove Day</button></div><div class='activity-item'><div class='activity-time'>09:00</div><div class='activity-details'><div class='body-medium'>Arrival & Check-in</div><div class='caption'>Welcome and settle in</div></div></div>`; c.appendChild(day); }
+      function populatePackageBuilder(){}
+      function populateDepartureCitiesSelection(){ const c=document.getElementById('departureCitiesSelection'); c.innerHTML=adminData.departureCities.map(dc=>`<label style='display:inline-flex;align-items:center;gap:8px;margin-right:12px;'><input type='checkbox' value='${dc.id}' checked> ${dc.name} (${dc.airportCode})</label>`).join(''); }
+    </script>
 </body>
 </html>
