@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Admin Panel</title>
+    <title>Travel Admin Panel - Packages</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -122,174 +122,6 @@
             margin-right: 10px;
         }
 
-        /* Cards & Stats */
-        .stats-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-
-        .booking-icon {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary);
-        }
-
-        .trip-icon {
-            background-color: rgba(76, 201, 240, 0.1);
-            color: var(--success);
-        }
-
-        .custom-icon {
-            background-color: rgba(248, 150, 30, 0.1);
-            color: var(--warning);
-        }
-
-        .revenue-icon {
-            background-color: rgba(247, 37, 133, 0.1);
-            color: var(--danger);
-        }
-
-        .stat-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        .stat-info p {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-
-        /* Charts Section */
-        .charts {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .chart-container {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .chart-header h3 {
-            font-size: 1.2rem;
-        }
-
-        .time-filter {
-            display: flex;
-            background: #f8f9fa;
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        .time-filter button {
-            background: none;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-
-        .time-filter button.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Table Styles */
-        .table-container {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .status {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .status.confirmed {
-            background-color: rgba(76, 201, 240, 0.1);
-            color: var(--success);
-        }
-
-        .status.pending {
-            background-color: rgba(248, 150, 30, 0.1);
-            color: var(--warning);
-        }
-
-        .status.cancelled {
-            background-color: rgba(247, 37, 133, 0.1);
-            color: var(--danger);
-        }
-
         .btn {
             padding: 8px 15px;
             border: none;
@@ -337,41 +169,33 @@
             background-color: #3ab0d9;
         }
 
-        /* Settings Page */
-        .settings-container {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .settings-tabs {
-            display: flex;
-            border-bottom: 1px solid #e0e0e0;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .settings-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
-
-        .settings-tab.active {
-            border-bottom: 2px solid var(--primary);
-            color: var(--primary);
-            font-weight: 500;
-        }
-
-        .settings-content {
+        /* Section Content */
+        .section-content {
             display: none;
         }
 
-        .settings-content.active {
+        .section-content.active {
             display: block;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .section-description {
+            margin-bottom: 20px;
+            color: #6c757d;
+        }
+
+        /* Form Styles */
         .form-group {
             margin-bottom: 20px;
         }
@@ -406,122 +230,216 @@
             margin-top: 20px;
         }
 
-        .item-card {
-            background: #f8f9fa;
+        /* Image Upload */
+        .image-upload {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #e0e0e0;
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            overflow: hidden;
         }
 
-        .item-info h4 {
-            margin-bottom: 5px;
+        .image-upload:hover {
+            border-color: var(--primary);
         }
 
-        .item-info p {
+        .image-upload i {
+            font-size: 2rem;
             color: #6c757d;
-            font-size: 0.9rem;
+            margin-bottom: 10px;
         }
 
-        .item-actions {
-            display: flex;
-            gap: 10px;
+        .image-upload p {
+            color: #6c757d;
         }
 
-        /* Customization Tools */
-        .customization-tools {
+        .image-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        /* Trip Cards */
+        .trips-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
 
-        .tool-card {
+        .trip-card {
             background: white;
             border-radius: 10px;
-            padding: 20px;
+            overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
-            cursor: pointer;
         }
 
-        .tool-card:hover {
+        .trip-card:hover {
             transform: translateY(-5px);
         }
 
-        .tool-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+        .trip-cover {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
         }
 
-        .destination-icon {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary);
+        .trip-info {
+            padding: 15px;
         }
 
-        .flight-icon {
-            background-color: rgba(76, 201, 240, 0.1);
-            color: var(--success);
+        .trip-info h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
         }
 
-        .hotel-icon {
-            background-color: rgba(248, 150, 30, 0.1);
-            color: var(--warning);
-        }
-
-        .activity-icon {
-            background-color: rgba(247, 37, 133, 0.1);
-            color: var(--danger);
-        }
-
-        .tool-card h3 {
+        .trip-info p {
+            color: #6c757d;
+            font-size: 0.9rem;
             margin-bottom: 10px;
         }
 
-        .tool-card p {
+        .trip-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        /* Package Cards */
+        .packages-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .package-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .package-cover {
+            height: 120px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .package-info {
+            padding: 12px;
+        }
+
+        .package-info h4 {
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .package-info p {
             color: #6c757d;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
         }
 
-        /* Section Content */
-        .section-content {
+        .package-price {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+
+        .package-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
         }
 
-        .section-content.active {
-            display: block;
+        .modal.active {
+            display: flex;
         }
 
-        .section-header {
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .section-title {
-            font-size: 1.5rem;
+        .modal-title {
+            font-size: 1.3rem;
             color: var(--primary);
         }
 
-        .section-description {
-            margin-bottom: 20px;
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
             color: #6c757d;
+        }
+
+        .package-tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .package-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .package-tab.active {
+            border-bottom: 2px solid var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .package-form {
+            display: none;
+        }
+
+        .package-form.active {
+            display: block;
         }
 
         /* Responsive */
         @media (max-width: 992px) {
-            .charts {
-                grid-template-columns: 1fr;
-            }
             .form-row {
                 flex-direction: column;
                 gap: 0;
@@ -542,7 +460,7 @@
             .main-content {
                 margin-left: 70px;
             }
-            .customization-tools {
+            .trips-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -556,11 +474,11 @@
         </div>
         <div class="sidebar-menu">
             <ul>
-                <li><a href="#" class="active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                <li><a href="#" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
                 <li><a href="#" data-page="trip-customizer"><i class="fas fa-pencil-alt"></i> <span>Trip Customizer Manager</span></a></li>
                 <li><a href="#" data-page="destinations"><i class="fas fa-map-marker-alt"></i> <span>Destinations</span></a></li>
                 <li><a href="#" data-page="departure-cities"><i class="fas fa-city"></i> <span>Departure Cities</span></a></li>
-                <li><a href="#" data-page="packages"><i class="fas fa-box"></i> <span>Packages</span></a></li>
+                <li><a href="#" class="active" data-page="packages"><i class="fas fa-box"></i> <span>Packages</span></a></li>
                 <li><a href="#" data-page="flights"><i class="fas fa-plane"></i> <span>Flights</span></a></li>
                 <li><a href="#" data-page="hotels"><i class="fas fa-hotel"></i> <span>Hotels</span></a></li>
                 <li><a href="#" data-page="activities"><i class="fas fa-hiking"></i> <span>Activities</span></a></li>
@@ -573,561 +491,269 @@
     <div class="main-content">
         <!-- Header -->
         <div class="header">
-            <h1 id="page-title">Dashboard</h1>
+            <h1 id="page-title">Packages</h1>
             <div class="user-info">
                 <img src="https://i.pravatar.cc/150?img=32" alt="User">
                 <span>Admin User</span>
             </div>
         </div>
 
-        <!-- Dashboard Content -->
-        <div id="dashboard-content" class="section-content active">
-            <!-- Stats Cards -->
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-icon booking-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>1,248</h3>
-                        <p>Total Bookings</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon trip-icon">
-                        <i class="fas fa-suitcase"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>856</h3>
-                        <p>Available Trips</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon custom-icon">
-                        <i class="fas fa-pencil-alt"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>392</h3>
-                        <p>Custom Trips</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon revenue-icon">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <div class="stat-info">
-                        <h3>$42,580</h3>
-                        <p>Total Revenue</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts -->
-            <div class="charts">
-                <div class="chart-container">
-                    <div class="chart-header">
-                        <h3>Bookings Overview</h3>
-                        <div class="time-filter">
-                            <button class="active">Day</button>
-                            <button>Week</button>
-                            <button>Month</button>
-                        </div>
-                    </div>
-                    <canvas id="bookingsChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-header">
-                        <h3>Booking Types</h3>
-                    </div>
-                    <canvas id="bookingTypesChart"></canvas>
-                </div>
-            </div>
-
-            <!-- Recent Bookings Table -->
-            <div class="table-container">
-                <div class="table-header">
-                    <h3>Recent Bookings</h3>
-                    <button class="btn btn-primary">View All</button>
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Customer</th>
-                            <th>Trip Type</th>
-                            <th>Destination</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#TRV-7842</td>
-                            <td>John Smith</td>
-                            <td>Available Trip</td>
-                            <td>Paris, France</td>
-                            <td>15 Jun 2023</td>
-                            <td><span class="status confirmed">Confirmed</span></td>
-                            <td><button class="btn btn-outline">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#TRV-7841</td>
-                            <td>Sarah Johnson</td>
-                            <td>Custom Trip</td>
-                            <td>Bali, Indonesia</td>
-                            <td>14 Jun 2023</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td><button class="btn btn-outline">View</button></td>
-                        </tr>
-                        <tr>
-                            <td>#TRV-7840</td>
-                            <td>Michael Brown</td>
-                            <td>Available Trip</td>
-                            <td>Tokyo, Japan</td>
-                            <td>13 Jun 2023</td>
-                            <td><span class="status confirmed">Confirmed</span></td>
-                            <td><button class="btn btn-outline">View</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Trip Customizer Manager Content -->
-        <div id="trip-customizer-content" class="section-content">
+        <!-- Packages Content -->
+        <div id="packages-content" class="section-content active">
             <div class="section-header">
-                <h2 class="section-title">Trip Customizer Manager</h2>
-                <button class="btn btn-primary">Save All Changes</button>
+                <h2 class="section-title">Packages Management</h2>
+                <button class="btn btn-primary" id="add-trip-btn">Add New Trip</button>
             </div>
-            <p class="section-description">Configure settings for custom trip creation and management.</p>
+            <p class="section-description">Manage trips and their packages. Each trip can have up to 3 packages with different details and pricing.</p>
             
-            <div class="customization-tools">
-                <div class="tool-card" data-tool="destinations">
-                    <div class="tool-icon destination-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Destinations</h3>
-                    <p>Add, edit, or remove destinations available for custom trips</p>
+            <!-- Add Trip Form -->
+            <div class="form-section" id="trip-form" style="display: none;">
+                <h3>Add New Trip</h3>
+                <div class="form-group">
+                    <label for="trip-name">Trip Name</label>
+                    <input type="text" id="trip-name" class="form-control" placeholder="Enter trip name">
                 </div>
-                <div class="tool-card" data-tool="dates">
-                    <div class="tool-icon flight-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Dates & Seasons</h3>
-                    <p>Manage available travel dates and seasonal pricing</p>
+                <div class="form-group">
+                    <label for="trip-description">Trip Description</label>
+                    <textarea id="trip-description" class="form-control" rows="3" placeholder="Enter trip description"></textarea>
                 </div>
-                <div class="tool-card" data-tool="flights">
-                    <div class="tool-icon flight-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <h3>Flights</h3>
-                    <p>Configure flight options and availability</p>
+                <div class="form-group">
+                    <label for="trip-destination">Destination</label>
+                    <select id="trip-destination" class="form-control">
+                        <option value="">Select Destination</option>
+                        <option value="paris">Paris, France</option>
+                        <option value="tokyo">Tokyo, Japan</option>
+                        <option value="bali">Bali, Indonesia</option>
+                        <option value="newyork">New York, USA</option>
+                        <option value="rome">Rome, Italy</option>
+                    </select>
                 </div>
-                <div class="tool-card" data-tool="hotels">
-                    <div class="tool-icon hotel-icon">
-                        <i class="fas fa-hotel"></i>
+                <div class="form-group">
+                    <label>Trip Cover Image</label>
+                    <div class="image-upload" id="trip-cover-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload trip cover image</p>
+                        <img id="trip-cover-preview" class="image-preview" alt="Trip cover preview">
                     </div>
-                    <h3>Hotels</h3>
-                    <p>Manage hotel options and room types</p>
+                    <input type="file" id="trip-cover-file" accept="image/*" style="display: none;">
                 </div>
-                <div class="tool-card" data-tool="activities">
-                    <div class="tool-icon activity-icon">
-                        <i class="fas fa-hiking"></i>
-                    </div>
-                    <h3>Activities</h3>
-                    <p>Add or edit available activities and excursions</p>
-                </div>
-                <div class="tool-card" data-tool="packages">
-                    <div class="tool-icon destination-icon">
-                        <i class="fas fa-box"></i>
-                    </div>
-                    <h3>Package Options</h3>
-                    <p>Create and manage pre-defined package elements</p>
+                <div class="form-actions">
+                    <button class="btn btn-outline" id="cancel-trip">Cancel</button>
+                    <button class="btn btn-primary" id="save-trip">Save Trip</button>
                 </div>
             </div>
             
-            <!-- Destinations Tool -->
-            <div id="destinations-tool" class="tool-content">
-                <div class="table-header">
-                    <h3>Destination Management</h3>
-                    <button class="btn btn-primary" id="add-destination">Add Destination</button>
+            <!-- Trips List -->
+            <div class="trips-container" id="trips-list">
+                <!-- Trip 1 -->
+                <div class="trip-card">
+                    <img src="https://images.unsplash.com/photo-1502602898536-47ad22581b52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Paris" class="trip-cover">
+                    <div class="trip-info">
+                        <h3>Paris City Break</h3>
+                        <p>Experience the magic of Paris with our carefully curated packages</p>
+                        
+                        <div class="packages-container">
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Basic Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Basic Package</h4>
+                                    <p>3 days, 2 nights</p>
+                                    <p class="package-price">$899</p>
+                                </div>
+                            </div>
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Standard Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Standard Package</h4>
+                                    <p>5 days, 4 nights</p>
+                                    <p class="package-price">$1,299</p>
+                                </div>
+                            </div>
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Premium Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Premium Package</h4>
+                                    <p>7 days, 6 nights</p>
+                                    <p class="package-price">$1,899</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="trip-actions">
+                            <button class="btn btn-outline edit-trip">Edit Trip</button>
+                            <button class="btn btn-primary manage-packages" data-trip-id="1">Manage Packages</button>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="form-section" id="destination-form" style="display: none;">
-                    <h4>Add/Edit Destination</h4>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="destination-name">Destination Name</label>
-                            <input type="text" id="destination-name" class="form-control">
+                <!-- Trip 2 -->
+                <div class="trip-card">
+                    <img src="https://images.unsplash.com/photo-1540959733332-8ab49d8058c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Tokyo" class="trip-cover">
+                    <div class="trip-info">
+                        <h3>Tokyo Adventure</h3>
+                        <p>Discover the perfect blend of tradition and innovation in Tokyo</p>
+                        
+                        <div class="packages-container">
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Basic Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Basic Package</h4>
+                                    <p>4 days, 3 nights</p>
+                                    <p class="package-price">$1,099</p>
+                                </div>
+                            </div>
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Standard Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Standard Package</h4>
+                                    <p>6 days, 5 nights</p>
+                                    <p class="package-price">$1,599</p>
+                                </div>
+                            </div>
+                            <div class="package-card">
+                                <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Premium Package" class="package-cover">
+                                <div class="package-info">
+                                    <h4>Premium Package</h4>
+                                    <p>8 days, 7 nights</p>
+                                    <p class="package-price">$2,199</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="destination-country">Country</label>
-                            <input type="text" id="destination-country" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="destination-description">Description</label>
-                        <textarea id="destination-description" class="form-control" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="destination-image">Image URL</label>
-                        <input type="text" id="destination-image" class="form-control">
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn btn-outline" id="cancel-destination">Cancel</button>
-                        <button class="btn btn-primary" id="save-destination">Save Destination</button>
-                    </div>
-                </div>
-                
-                <div class="items-list" id="destinations-list">
-                    <div class="item-card">
-                        <div class="item-info">
-                            <h4>Paris, France</h4>
-                            <p>City of Light with iconic landmarks and rich culture</p>
-                        </div>
-                        <div class="item-actions">
-                            <button class="btn btn-outline edit-item">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                    <div class="item-card">
-                        <div class="item-info">
-                            <h4>Tokyo, Japan</h4>
-                            <p>Vibrant metropolis blending tradition and innovation</p>
-                        </div>
-                        <div class="item-actions">
-                            <button class="btn btn-outline edit-item">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                    <div class="item-card">
-                        <div class="item-info">
-                            <h4>Bali, Indonesia</h4>
-                            <p>Tropical paradise with beautiful beaches and temples</p>
-                        </div>
-                        <div class="item-actions">
-                            <button class="btn btn-outline edit-item">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                        
+                        <div class="trip-actions">
+                            <button class="btn btn-outline edit-trip">Edit Trip</button>
+                            <button class="btn btn-primary manage-packages" data-trip-id="2">Manage Packages</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Destinations Content -->
-        <div id="destinations-content" class="section-content">
-            <div class="section-header">
-                <h2 class="section-title">Destinations Management</h2>
-                <button class="btn btn-primary" id="show-destination-form">Add Destination</button>
+    <!-- Packages Modal -->
+    <div class="modal" id="packages-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Manage Packages for <span id="modal-trip-name">Paris City Break</span></h3>
+                <button class="close-modal">&times;</button>
             </div>
-            <p class="section-description">Add, edit, or remove destinations available for booking.</p>
             
-            <div class="form-section" id="destination-form-full" style="display: none;">
-                <h4>Add New Destination</h4>
+            <div class="package-tabs">
+                <div class="package-tab active" data-package="1">Package 1</div>
+                <div class="package-tab" data-package="2">Package 2</div>
+                <div class="package-tab" data-package="3">Package 3</div>
+            </div>
+            
+            <!-- Package 1 Form -->
+            <div class="package-form active" id="package-form-1">
+                <div class="form-group">
+                    <label for="package1-name">Package Name</label>
+                    <input type="text" id="package1-name" class="form-control" value="Basic Package">
+                </div>
+                <div class="form-group">
+                    <label for="package1-description">Package Description</label>
+                    <textarea id="package1-description" class="form-control" rows="3">Perfect for a short city break with essential experiences</textarea>
+                </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="dest-name">Destination Name</label>
-                        <input type="text" id="dest-name" class="form-control">
+                        <label for="package1-duration">Duration</label>
+                        <input type="text" id="package1-duration" class="form-control" value="3 days, 2 nights">
                     </div>
                     <div class="form-group">
-                        <label for="dest-country">Country</label>
-                        <input type="text" id="dest-country" class="form-control">
+                        <label for="package1-price">Price ($)</label>
+                        <input type="number" id="package1-price" class="form-control" value="899">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dest-desc">Description</label>
-                    <textarea id="dest-desc" class="form-control" rows="3"></textarea>
+                    <label>Package Cover Image</label>
+                    <div class="image-upload" id="package1-cover-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload package cover image</p>
+                        <img id="package1-cover-preview" class="image-preview" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Package cover preview">
+                    </div>
+                    <input type="file" id="package1-cover-file" accept="image/*" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="package1-inclusions">Inclusions</label>
+                    <textarea id="package1-inclusions" class="form-control" rows="3">Accommodation, Breakfast, City Tour, Airport Transfers</textarea>
+                </div>
+            </div>
+            
+            <!-- Package 2 Form -->
+            <div class="package-form" id="package-form-2">
+                <div class="form-group">
+                    <label for="package2-name">Package Name</label>
+                    <input type="text" id="package2-name" class="form-control" value="Standard Package">
+                </div>
+                <div class="form-group">
+                    <label for="package2-description">Package Description</label>
+                    <textarea id="package2-description" class="form-control" rows="3">A balanced package with more experiences and comfort</textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="dest-climate">Climate</label>
-                        <select id="dest-climate" class="form-control">
-                            <option value="tropical">Tropical</option>
-                            <option value="temperate">Temperate</option>
-                            <option value="continental">Continental</option>
-                            <option value="arid">Arid</option>
-                        </select>
+                        <label for="package2-duration">Duration</label>
+                        <input type="text" id="package2-duration" class="form-control" value="5 days, 4 nights">
                     </div>
                     <div class="form-group">
-                        <label for="dest-best-time">Best Time to Visit</label>
-                        <input type="text" id="dest-best-time" class="form-control">
+                        <label for="package2-price">Price ($)</label>
+                        <input type="number" id="package2-price" class="form-control" value="1299">
                     </div>
                 </div>
-                <div class="form-actions">
-                    <button class="btn btn-outline" id="cancel-dest-full">Cancel</button>
-                    <button class="btn btn-primary" id="save-dest-full">Save Destination</button>
+                <div class="form-group">
+                    <label>Package Cover Image</label>
+                    <div class="image-upload" id="package2-cover-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload package cover image</p>
+                        <img id="package2-cover-preview" class="image-preview" src="https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Package cover preview">
+                    </div>
+                    <input type="file" id="package2-cover-file" accept="image/*" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="package2-inclusions">Inclusions</label>
+                    <textarea id="package2-inclusions" class="form-control" rows="3">Accommodation, Breakfast & Dinner, City Tour, Museum Entries, Airport Transfers</textarea>
                 </div>
             </div>
             
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Destination</th>
-                            <th>Country</th>
-                            <th>Climate</th>
-                            <th>Best Time</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>D001</td>
-                            <td>Paris</td>
-                            <td>France</td>
-                            <td>Temperate</td>
-                            <td>Apr-Oct</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>D002</td>
-                            <td>Tokyo</td>
-                            <td>Japan</td>
-                            <td>Temperate</td>
-                            <td>Mar-May, Sep-Nov</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>D003</td>
-                            <td>Bali</td>
-                            <td>Indonesia</td>
-                            <td>Tropical</td>
-                            <td>Apr-Oct</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Flights Content -->
-        <div id="flights-content" class="section-content">
-            <div class="section-header">
-                <h2 class="section-title">Flights Management</h2>
-                <button class="btn btn-primary">Add Flight</button>
-            </div>
-            <p class="section-description">Manage flight options, schedules, and pricing.</p>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Flight No.</th>
-                            <th>Airline</th>
-                            <th>Route</th>
-                            <th>Date</th>
-                            <th>Price</th>
-                            <th>Seats</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>AF 1234</td>
-                            <td>Air France</td>
-                            <td>Paris (CDG) → Tokyo (NRT)</td>
-                            <td>15 Jun 2023</td>
-                            <td>$1,250</td>
-                            <td>24/180</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>JL 5678</td>
-                            <td>Japan Airlines</td>
-                            <td>Tokyo (NRT) → Bali (DPS)</td>
-                            <td>20 Jun 2023</td>
-                            <td>$850</td>
-                            <td>45/210</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Hotels Content -->
-        <div id="hotels-content" class="section-content">
-            <div class="section-header">
-                <h2 class="section-title">Hotels Management</h2>
-                <button class="btn btn-primary">Add Hotel</button>
-            </div>
-            <p class="section-description">Manage hotel options, room types, and availability.</p>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hotel Name</th>
-                            <th>Location</th>
-                            <th>Star Rating</th>
-                            <th>Room Types</th>
-                            <th>Price/Night</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Grand Paris Hotel</td>
-                            <td>Paris, France</td>
-                            <td>5 Stars</td>
-                            <td>Standard, Deluxe, Suite</td>
-                            <td>$250</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tokyo Bay Resort</td>
-                            <td>Tokyo, Japan</td>
-                            <td>4 Stars</td>
-                            <td>Standard, Premium</td>
-                            <td>$180</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Activities Content -->
-        <div id="activities-content" class="section-content">
-            <div class="section-header">
-                <h2 class="section-title">Activities Management</h2>
-                <button class="btn btn-primary">Add Activity</button>
-            </div>
-            <p class="section-description">Manage activities, excursions, and tours available at destinations.</p>
-            
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Activity Name</th>
-                            <th>Destination</th>
-                            <th>Type</th>
-                            <th>Duration</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Eiffel Tower Tour</td>
-                            <td>Paris, France</td>
-                            <td>Sightseeing</td>
-                            <td>3 hours</td>
-                            <td>$45</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Traditional Tea Ceremony</td>
-                            <td>Tokyo, Japan</td>
-                            <td>Cultural</td>
-                            <td>2 hours</td>
-                            <td>$35</td>
-                            <td><span class="status confirmed">Active</span></td>
-                            <td>
-                                <button class="btn btn-outline">Edit</button>
-                                <button class="btn btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Bookings Content -->
-        <div id="bookings-content" class="section-content">
-            <div class="section-header">
-                <h2 class="section-title">Bookings Management</h2>
-                <div>
-                    <button class="btn btn-outline">Export</button>
-                    <button class="btn btn-primary">Filter</button>
+            <!-- Package 3 Form -->
+            <div class="package-form" id="package-form-3">
+                <div class="form-group">
+                    <label for="package3-name">Package Name</label>
+                    <input type="text" id="package3-name" class="form-control" value="Premium Package">
+                </div>
+                <div class="form-group">
+                    <label for="package3-description">Package Description</label>
+                    <textarea id="package3-description" class="form-control" rows="3">Luxury experience with exclusive access and premium services</textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="package3-duration">Duration</label>
+                        <input type="text" id="package3-duration" class="form-control" value="7 days, 6 nights">
+                    </div>
+                    <div class="form-group">
+                        <label for="package3-price">Price ($)</label>
+                        <input type="number" id="package3-price" class="form-control" value="1899">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Package Cover Image</label>
+                    <div class="image-upload" id="package3-cover-upload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload package cover image</p>
+                        <img id="package3-cover-preview" class="image-preview" src="https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Package cover preview">
+                    </div>
+                    <input type="file" id="package3-cover-file" accept="image/*" style="display: none;">
+                </div>
+                <div class="form-group">
+                    <label for="package3-inclusions">Inclusions</label>
+                    <textarea id="package3-inclusions" class="form-control" rows="3">Luxury Accommodation, All Meals, Private Tours, Exclusive Experiences, Airport Transfers, Travel Insurance</textarea>
                 </div>
             </div>
-            <p class="section-description">View and manage all customer bookings.</p>
             
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Booking ID</th>
-                            <th>Customer</th>
-                            <th>Trip Type</th>
-                            <th>Destination</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#TRV-7842</td>
-                            <td>John Smith</td>
-                            <td>Available Trip</td>
-                            <td>Paris, France</td>
-                            <td>15 Jun 2023</td>
-                            <td>$1,250</td>
-                            <td><span class="status confirmed">Confirmed</span></td>
-                            <td>
-                                <button class="btn btn-outline">View</button>
-                                <button class="btn btn-outline">Edit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#TRV-7841</td>
-                            <td>Sarah Johnson</td>
-                            <td>Custom Trip</td>
-                            <td>Bali, Indonesia</td>
-                            <td>14 Jun 2023</td>
-                            <td>$980</td>
-                            <td><span class="status pending">Pending</span></td>
-                            <td>
-                                <button class="btn btn-outline">View</button>
-                                <button class="btn btn-outline">Edit</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="form-actions">
+                <button class="btn btn-outline" id="cancel-packages">Cancel</button>
+                <button class="btn btn-primary" id="save-packages">Save All Packages</button>
             </div>
         </div>
-
     </div>
 
     <script>
@@ -1142,138 +768,118 @@
                 });
                 this.classList.add('active');
                 
-                // Show corresponding page
-                const pageId = this.getAttribute('data-page');
-                document.querySelectorAll('.section-content').forEach(page => {
-                    page.classList.remove('active');
-                });
-                
                 // Update page title
                 document.getElementById('page-title').textContent = this.querySelector('span').textContent;
-                
-                // Show the selected page
-                document.getElementById(`${pageId}-content`).classList.add('active');
             });
         });
 
-        // Time Filter Toggle
-        document.querySelectorAll('.time-filter button').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.time-filter button').forEach(btn => {
-                    btn.classList.remove('active');
+        // Trip Form Toggle
+        document.getElementById('add-trip-btn').addEventListener('click', function() {
+            document.getElementById('trip-form').style.display = 'block';
+        });
+
+        document.getElementById('cancel-trip').addEventListener('click', function() {
+            document.getElementById('trip-form').style.display = 'none';
+        });
+
+        // Image Upload Functionality
+        function setupImageUpload(uploadElementId, fileInputId, previewElementId) {
+            const uploadElement = document.getElementById(uploadElementId);
+            const fileInput = document.getElementById(fileInputId);
+            const previewElement = document.getElementById(previewElementId);
+            
+            uploadElement.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewElement.src = e.target.result;
+                        previewElement.style.display = 'block';
+                        uploadElement.querySelector('i').style.display = 'none';
+                        uploadElement.querySelector('p').style.display = 'none';
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        }
+
+        // Setup image uploads
+        setupImageUpload('trip-cover-upload', 'trip-cover-file', 'trip-cover-preview');
+        setupImageUpload('package1-cover-upload', 'package1-cover-file', 'package1-cover-preview');
+        setupImageUpload('package2-cover-upload', 'package2-cover-file', 'package2-cover-preview');
+        setupImageUpload('package3-cover-upload', 'package3-cover-file', 'package3-cover-preview');
+
+        // Package Tabs
+        document.querySelectorAll('.package-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const packageId = this.getAttribute('data-package');
+                
+                // Update active tab
+                document.querySelectorAll('.package-tab').forEach(t => {
+                    t.classList.remove('active');
                 });
                 this.classList.add('active');
                 
-                // In a real app, this would update the chart data
-                updateChartData(this.textContent.toLowerCase());
-            });
-        });
-
-        // Tool Selection in Trip Customizer
-        document.querySelectorAll('.tool-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const tool = this.getAttribute('data-tool');
-                
-                // Hide all tool contents
-                document.querySelectorAll('.tool-content').forEach(content => {
-                    content.style.display = 'none';
+                // Show corresponding form
+                document.querySelectorAll('.package-form').forEach(form => {
+                    form.classList.remove('active');
                 });
-                
-                // Show selected tool content
-                document.getElementById(`${tool}-tool`).style.display = 'block';
+                document.getElementById(`package-form-${packageId}`).classList.add('active');
             });
         });
 
-        // Form Toggles
-        document.getElementById('add-destination').addEventListener('click', function() {
-            document.getElementById('destination-form').style.display = 'block';
+        // Manage Packages Modal
+        document.querySelectorAll('.manage-packages').forEach(button => {
+            button.addEventListener('click', function() {
+                const tripId = this.getAttribute('data-trip-id');
+                const tripName = this.closest('.trip-card').querySelector('h3').textContent;
+                
+                document.getElementById('modal-trip-name').textContent = tripName;
+                document.getElementById('packages-modal').classList.add('active');
+            });
         });
 
-        document.getElementById('cancel-destination').addEventListener('click', function() {
-            document.getElementById('destination-form').style.display = 'none';
+        // Close Modal
+        document.querySelector('.close-modal').addEventListener('click', function() {
+            document.getElementById('packages-modal').classList.remove('active');
         });
 
-        document.getElementById('show-destination-form').addEventListener('click', function() {
-            document.getElementById('destination-form-full').style.display = 'block';
+        document.getElementById('cancel-packages').addEventListener('click', function() {
+            document.getElementById('packages-modal').classList.remove('active');
         });
 
-        document.getElementById('cancel-dest-full').addEventListener('click', function() {
-            document.getElementById('destination-form-full').style.display = 'none';
+        // Save Packages
+        document.getElementById('save-packages').addEventListener('click', function() {
+            alert('All packages saved successfully!');
+            document.getElementById('packages-modal').classList.remove('active');
         });
 
-        // Initialize Charts
-        const bookingsCtx = document.getElementById('bookingsChart').getContext('2d');
-        const bookingTypesCtx = document.getElementById('bookingTypesChart').getContext('2d');
-        
-        // Bookings Chart
-        const bookingsChart = new Chart(bookingsCtx, {
-            type: 'line',
-            data: {
-                labels: ['1 Jun', '2 Jun', '3 Jun', '4 Jun', '5 Jun', '6 Jun', '7 Jun'],
-                datasets: [
-                    {
-                        label: 'Available Trips',
-                        data: [12, 19, 15, 17, 14, 21, 18],
-                        borderColor: '#4361ee',
-                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    },
-                    {
-                        label: 'Custom Trips',
-                        data: [5, 8, 6, 9, 7, 10, 12],
-                        borderColor: '#f8961e',
-                        backgroundColor: 'rgba(248, 150, 30, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+        // Save Trip
+        document.getElementById('save-trip').addEventListener('click', function() {
+            const tripName = document.getElementById('trip-name').value;
+            const tripDescription = document.getElementById('trip-description').value;
+            
+            if (!tripName || !tripDescription) {
+                alert('Please fill in all required fields');
+                return;
             }
+            
+            alert('Trip saved successfully!');
+            document.getElementById('trip-form').style.display = 'none';
+            
+            // Reset form
+            document.getElementById('trip-name').value = '';
+            document.getElementById('trip-description').value = '';
+            document.getElementById('trip-destination').value = '';
+            document.getElementById('trip-cover-preview').style.display = 'none';
+            document.getElementById('trip-cover-upload').querySelector('i').style.display = 'block';
+            document.getElementById('trip-cover-upload').querySelector('p').style.display = 'block';
         });
-        
-        // Booking Types Chart
-        const bookingTypesChart = new Chart(bookingTypesCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Available Trips', 'Custom Trips'],
-                datasets: [{
-                    data: [856, 392],
-                    backgroundColor: [
-                        '#4361ee',
-                        '#f8961e'
-                    ],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                    }
-                }
-            }
-        });
-
-        // Function to update chart data based on time filter
-        function updateChartData(timeFrame) {
-            // In a real application, this would fetch new data from the server
-            // For this demo, we'll just log the time frame
-            console.log(`Updating charts for: ${timeFrame}`);
-        }
     </script>
 </body>
 </html>
