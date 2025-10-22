@@ -52,25 +52,13 @@ jobs:
             npm run build || echo "No build script; continuing"
           fi
 
-      - name: Detect publish directory
-        id: detect
-        run: |
-          set -e
-          candidates=("out" "dist" "build" ".next" "public" ".")
-          for dir in "${candidates[@]}"; do
-            if [ -d "$dir" ]; then
-              echo "publish_dir=$dir" >> "$GITHUB_OUTPUT"
-              echo "Using publish dir: $dir"
-              exit 0
-            fi
-          done
-          echo "publish_dir=." >> "$GITHUB_OUTPUT"
-          echo "Using fallback publish dir: ."
+      - name: Build frontend workspace
+        run: npm run build -w @hache/frontend
 
-      - name: Upload artifact
+      - name: Upload artifact (frontend dist)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.detect.outputs.publish_dir }}
+          path: apps/frontend/dist
 
   deploy:
     environment:
