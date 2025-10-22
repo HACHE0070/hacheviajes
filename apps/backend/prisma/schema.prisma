@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  name        String
+  email       String   @unique
+  password    String
+  role        String   @default("Customer")
+  preferences String?
+  bookings    Booking[]
+  customTrips CustomTrip[]
+}
+
+model Trip {
+  id         String     @id @default(cuid())
+  title      String
+  city       String
+  heroMedia  String
+  maxSeats   Int        @default(20)
+  tags       String?
+  packages   Package[]
+  itinerary  ItineraryItem[]
+  media      MediaAsset[]
+  bookings   Booking[]
+}
+
+model Package {
+  id         String  @id @default(cuid())
+  name       String
+  basePrice  Float
+  seatsTotal Int
+  seatsLeft  Int
+  inclusions String?
+  trip       Trip    @relation(fields: [tripId], references: [id])
+  tripId     String
+  bookings   Booking[]
+}
+
+model Booking {
+  id            String   @id @default(cuid())
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String
+  trip          Trip     @relation(fields: [tripId], references: [id])
+  tripId        String
+  package       Package  @relation(fields: [packageId], references: [id])
+  packageId     String
+  guests        String
+  totalPrice    Float
+  paymentStatus String
+  createdAt     DateTime @default(now())
+}
+
+model CustomTrip {
+  id         String  @id @default(cuid())
+  user       User    @relation(fields: [userId], references: [id])
+  userId     String
+  cities     String
+  days       Int
+  flights    String?
+  hotels     String?
+  activities String?
+  totalPrice Float    @default(0)
+  status     String   @default("draft")
+}
+
+model AdminVariable {
+  id                  String   @id @default("singleton")
+  serviceFee          Float    @default(5)
+  taxRate             Float    @default(10)
+  markupPercent       Float    @default(8)
+  seasonalMultipliers String   @default("[]")
+  currency            String   @default("EUR")
+}
+
+model ItineraryItem {
+  id          String @id @default(cuid())
+  day         Int
+  title       String
+  description String
+  trip        Trip   @relation(fields: [tripId], references: [id])
+  tripId      String
+}
+
+model MediaAsset {
+  id    String @id @default(cuid())
+  type  String
+  url   String
+  tags  String?
+  trip  Trip?  @relation(fields: [tripId], references: [id])
+  tripId String?
+}
