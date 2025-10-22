@@ -1,0 +1,84 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node if package.json exists
+        if: ${{ hashFiles('**/package.json') != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies (npm)
+        if: ${{ hashFiles('**/package-lock.json') != '' }}
+        run: npm ci
+
+      - name: Install dependencies (pnpm)
+        if: ${{ hashFiles('**/pnpm-lock.yaml') != '' }}
+        run: |
+          npm -g i pnpm
+          pnpm i --frozen-lockfile
+
+      - name: Install dependencies (yarn)
+        if: ${{ hashFiles('**/yarn.lock') != '' }}
+        run: |
+          npm -g i yarn
+          yarn --frozen-lockfile
+
+      - name: Build (best effort)
+        if: ${{ hashFiles('**/package.json') != '' }}
+        run: |
+          set -e
+          if [ -f package.json ]; then
+            npm run build || echo "No build script; continuing"
+          fi
+
+      - name: Detect publish directory
+        id: detect
+        run: |
+          set -e
+          candidates=("out" "dist" "build" ".next" "public" ".")
+          for dir in "${candidates[@]}"; do
+            if [ -d "$dir" ]; then
+              echo "publish_dir=$dir" >> "$GITHUB_OUTPUT"
+              echo "Using publish dir: $dir"
+              exit 0
+            fi
+          done
+          echo "publish_dir=." >> "$GITHUB_OUTPUT"
+          echo "Using fallback publish dir: ."
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.detect.outputs.publish_dir }}
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
