@@ -39,8 +39,8 @@ export default function Hero() {
             </div>
 
             <div className="mt-6 flex gap-4 justify-center">
-              <Link to="/trips" className="btn">Explore Trips</Link>
-              <Link to="/customize" className="btn">Customize Yours</Link>
+              <Link to="/trips" className="btn" aria-label="Explore trips">Explore Trips</Link>
+              <Link to="/customize" className="btn" aria-label="Customize your trip">Customize Yours</Link>
             </div>
           </div>
         </motion.div>
