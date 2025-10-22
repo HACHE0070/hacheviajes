@@ -9,6 +9,7 @@ export default function Customize() {
   const [selected, setSelected] = useState<string[]>(['Marrakesh']);
   const [guests, setGuests] = useState(2);
   const [startDate, setStartDate] = useState<string>('2025-11-15');
+  const [days, setDays] = useState<number>(5);
 
   const route = useMemo(() => selected.join(' → '), [selected]);
 
