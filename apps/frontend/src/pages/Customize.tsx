@@ -1,19 +1,37 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { getCustomizeSettings, onCustomizeSettingsChange } from '@/lib/customizeSettings';
 
-const cities = ['Dakhla','Marrakesh','Agadir','Casablanca','Fes','Rabat','Tangier','Essaouira','Chefchaouen','Ouarzazate','Meknes'];
-const hotelOptions = ['Economy Hotel', 'Comfort Riad', 'Premium Resort'];
-const activityOptions = ['Kite Surfing', 'Desert Safari', 'Surf Lessons', 'Cultural Tour', 'Hammam & Spa'];
+const initialSettings = getCustomizeSettings();
 
 export default function Customize() {
-  const [query, setQuery] = useState('Marrakesh · 2025-11-15 · 2 guests');
-  const [selected, setSelected] = useState<string[]>(['Marrakesh']);
+  const [availableCities, setAvailableCities] = useState<string[]>(initialSettings.visibleDestinations);
+  const [hotelOptions, setHotelOptions] = useState<string[]>(initialSettings.hotelOptions);
+  const [activityOptions, setActivityOptions] = useState<string[]>(initialSettings.visibleActivities);
+  const defaultCity = availableCities[0] || 'Marrakesh';
+  const [query, setQuery] = useState(`${defaultCity} · 2025-11-15 · 2 guests`);
+  const [selected, setSelected] = useState<string[]>([defaultCity]);
   const [guests, setGuests] = useState(2);
   const [startDate, setStartDate] = useState<string>('2025-11-15');
   const [days, setDays] = useState<number>(5);
-  const [hotel, setHotel] = useState<string>('Comfort Riad');
-  const [activities, setActivities] = useState<string[]>(['Cultural Tour']);
+  const [hotel, setHotel] = useState<string>(hotelOptions[0] || 'Comfort Riad');
+  const [activities, setActivities] = useState<string[]>(activityOptions.slice(0, 1));
+
+  useEffect(() => {
+    return onCustomizeSettingsChange((s) => {
+      setAvailableCities(s.visibleDestinations);
+      setHotelOptions(s.hotelOptions);
+      setActivityOptions(s.visibleActivities);
+      if (!s.visibleDestinations.includes(selected[0])) {
+        setSelected([s.visibleDestinations[0] || '']);
+      }
+      if (!s.hotelOptions.includes(hotel)) {
+        setHotel(s.hotelOptions[0] || '');
+      }
+      setActivities((prev) => prev.filter((a) => s.visibleActivities.includes(a)));
+    });
+  }, [selected, hotel]);
 
   const route = useMemo(() => selected.join(' → '), [selected]);
 
@@ -33,7 +51,7 @@ export default function Customize() {
             const city = parts[0];
             const date = parts[1];
             const guestsStr = parts[2]?.match(/\d+/)?.[0];
-            if (city && cities.includes(city)) setSelected([city]);
+            if (city && availableCities.includes(city)) setSelected([city]);
             if (date) setStartDate(date);
             if (guestsStr) setGuests(parseInt(guestsStr));
           }}
@@ -45,7 +63,7 @@ export default function Customize() {
           <div className="glass p-4 grid grid-cols-2 gap-4">
             <label className="flex flex-col">City
               <select className="glass p-2 mt-1" value={selected[0]} onChange={(e)=>setSelected([e.target.value])}>
-                {cities.map(c => <option key={c} value={c}>{c}</option>)}
+                {availableCities.map(c => <option key={c} value={c}>{c}</option>)}
               </select>
             </label>
             <label className="flex flex-col">Start Date
