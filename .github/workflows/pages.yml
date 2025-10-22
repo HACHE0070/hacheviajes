@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ "**" ]
   workflow_dispatch:
 
 permissions:
@@ -18,8 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout website branch
         uses: actions/checkout@v4
+        with:
+          ref: cursor/build-magical-moroccan-travel-platform-caa7
 
       - name: Use Node if package.json exists
         if: ${{ hashFiles('**/package.json') != '' }}
@@ -53,7 +55,15 @@ jobs:
           fi
 
       - name: Build frontend workspace
-        run: npm run build -w @hache/frontend
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_WS_URL: ${{ secrets.VITE_WS_URL }}
+        run: |
+          echo "Using BASE_PATH=$BASE_PATH"
+          npm run build -w @hache/frontend
+          # SPA fallback for GitHub Pages
+          cp apps/frontend/dist/index.html apps/frontend/dist/404.html
 
       - name: Upload artifact (frontend dist)
         uses: actions/upload-pages-artifact@v3
