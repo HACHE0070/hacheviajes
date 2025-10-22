@@ -1,0 +1,18 @@
+{
+  "name": "hache-viajes",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @hache/backend & npm run dev -w @hache/frontend",
+    "build": "npm run build -w @hache/backend && npm run build -w @hache/frontend",
+    "start": "npm run start -w @hache/backend",
+    "db:push": "npm run db:push -w @hache/backend",
+    "db:seed": "npm run db:seed -w @hache/backend"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
