@@ -1,0 +1,5 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { motion } from 'framer-motion';
+export default function Hero() {
+    return (_jsxs("div", { className: "relative h-[90vh] overflow-hidden", children: [_jsx("video", { className: "absolute inset-0 w-full h-full object-cover", autoPlay: true, loop: true, muted: true, playsInline: true, children: _jsx("source", { src: "https://cdn.coverr.co/videos/coverr-the-desert-9713/1080p.mp4", type: "video/mp4" }) }), _jsx("div", { className: "absolute inset-0 bg-gradient-to-b from-black/30 to-black/70" }), _jsx("div", { className: "relative z-10 h-full flex items-center justify-center text-center px-6", children: _jsxs(motion.div, { initial: { opacity: 0, scale: 0.98 }, animate: { opacity: 1, scale: 1 }, transition: { duration: 0.8 }, children: [_jsx("h1", { className: "text-5xl md:text-7xl font-bold mb-6", children: "Travel Beyond the Ordinary" }), _jsxs("div", { className: "flex gap-4 justify-center", children: [_jsx("a", { href: "/trips", className: "btn", children: "Explore Trips" }), _jsx("a", { href: "/customize", className: "btn", children: "Customize Yours" })] })] }) })] }));
+}

@@ -1,0 +1,11 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+const cities = ['Dakhla', 'Marrakesh', 'Agadir', 'Casablanca', 'Fes', 'Rabat', 'Tangier', 'Essaouira', 'Chefchaouen', 'Ouarzazate', 'Meknes'];
+export default function Customize() {
+    const [selected, setSelected] = useState(['Marrakesh']);
+    const [guests, setGuests] = useState(2);
+    const [days, setDays] = useState(5);
+    const route = useMemo(() => selected.join(' → '), [selected]);
+    return (_jsxs("div", { className: "max-w-5xl mx-auto px-6 py-10", children: [_jsx("h1", { className: "text-3xl font-bold mb-6", children: "Customize Your Trip" }), _jsxs("div", { className: "grid md:grid-cols-2 gap-6", children: [_jsxs("div", { className: "space-y-4", children: [_jsxs("div", { className: "glass p-4", children: [_jsx("div", { className: "font-semibold mb-2", children: "Select Cities" }), _jsx("div", { className: "flex flex-wrap gap-2", children: cities.map(c => (_jsx("button", { className: `glass px-3 py-1 ${selected.includes(c) ? 'bg-white/20' : ''}`, onClick: () => setSelected(prev => prev.includes(c) ? prev.filter(x => x !== c) : [...prev, c]), children: c }, c))) })] }), _jsxs("div", { className: "glass p-4 grid grid-cols-2 gap-4", children: [_jsxs("label", { className: "flex flex-col", children: ["Guests", _jsx("input", { className: "glass p-2 mt-1", type: "number", min: 1, value: guests, onChange: e => setGuests(parseInt(e.target.value || '1')) })] }), _jsxs("label", { className: "flex flex-col", children: ["Days", _jsx("input", { className: "glass p-2 mt-1", type: "number", min: 1, value: days, onChange: e => setDays(parseInt(e.target.value || '1')) })] })] })] }), _jsxs("div", { className: "glass p-4", children: [_jsx("div", { className: "font-semibold mb-2", children: "Route" }), _jsx(motion.div, { className: "h-64 bg-black/20 rounded-lg flex items-center justify-center", initial: { opacity: 0 }, animate: { opacity: 1 }, children: route || 'Select cities to build route' }), _jsxs("div", { className: "mt-4 flex gap-3", children: [_jsx("button", { className: "btn", children: "Save Draft" }), _jsx("button", { className: "btn", children: "Book Now" })] })] })] })] }));
+}

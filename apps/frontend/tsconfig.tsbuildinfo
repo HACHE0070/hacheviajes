@@ -1,0 +1,1 @@
+{"root":["./src/main.tsx","./src/vite-env.d.ts","./src/components/FeaturedTrips.tsx","./src/components/Hero.tsx","./src/components/NavBar.tsx","./src/lib/api.ts","./src/pages/App.tsx","./src/pages/Customize.tsx","./src/pages/Home.tsx","./src/pages/TripDetails.tsx","./src/pages/Trips.tsx","./src/pages/admin/Admin.tsx","./src/sockets/io.ts"],"version":"5.9.3"}

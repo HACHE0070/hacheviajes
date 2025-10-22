@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { prisma } from '../lib/db.js';
+import { Prisma } from '@prisma/client';
 import { withSeatLock } from '../lib/redis.js';
 import { emitSeatUpdate, emitMetricsUpdate } from '../index.js';
 import PDFDocument from 'pdfkit';
@@ -17,7 +18,7 @@ router.post('/', async (req, res) => {
       if (!pkg) throw new Error('Package not found');
       if (pkg.seatsLeft < guests.length) throw new Error('Not enough seats');
 
-      const created = await prisma.$transaction(async (tx) => {
+      const created = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
         const updatedPkg = await tx.package.update({
           where: { id: packageId },
           data: { seatsLeft: { decrement: guests.length } }

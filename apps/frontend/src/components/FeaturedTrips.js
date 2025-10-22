@@ -1,0 +1,11 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import api from '@/lib/api';
+export default function FeaturedTrips() {
+    const [trips, setTrips] = useState([]);
+    useEffect(() => {
+        api.get('/trips').then(r => setTrips(r.data.slice(0, 6)));
+    }, []);
+    return (_jsxs("div", { className: "max-w-7xl mx-auto px-6 py-16", children: [_jsx("h2", { className: "text-3xl font-bold mb-6", children: "Featured Trips" }), _jsx("div", { className: "grid md:grid-cols-3 gap-6", children: trips.map((t) => (_jsxs(motion.a, { href: `/trips/${t.id}`, className: "glass overflow-hidden", initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true }, children: [_jsx("div", { className: "relative h-48", children: _jsx("video", { className: "absolute inset-0 w-full h-full object-cover", autoPlay: true, loop: true, muted: true, playsInline: true, children: _jsx("source", { src: t.heroMedia, type: "video/mp4" }) }) }), _jsxs("div", { className: "p-4", children: [_jsx("div", { className: "font-semibold text-lg", children: t.title }), _jsx("div", { className: "text-white/70", children: t.city })] })] }, t.id))) })] }));
+}
