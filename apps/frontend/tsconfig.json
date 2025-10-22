@@ -4,9 +4,11 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
       "@/pages/*": ["src/pages/*"],
-      "@/lib/*": ["src/lib/*"]
+      "@/lib/*": ["src/lib/*"],
+      "@/sockets/*": ["src/sockets/*"]
     }
   },
   "include": ["src"],
