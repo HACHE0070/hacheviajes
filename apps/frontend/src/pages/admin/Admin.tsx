@@ -7,6 +7,17 @@ type Package = { id: number; name: string; destination: string; economy: number;
 type Booking = { id: string; customer: string; destination: string; amount: number; status: 'confirmed' | 'pending' };
 
 export default function Admin() {
+  // Serve static admin panel HTML from public/admin.html for now
+  const src = `${import.meta.env.BASE_URL}admin.html`;
+  return (
+    <div className="min-h-screen">
+      <iframe title="Admin" src={src} className="w-full" style={{ minHeight: '100vh', border: 'none' }} />
+    </div>
+  );
+}
+
+/* Previous in-app admin UI retained below for reference, will be removed once static panel takes over fully.
+export default function Admin() {
   const [activeTab, setActiveTab] = useState<'dashboard'|'customizer'|'destinations'|'departures'|'packages'|'flights'|'hotels'|'activities'|'bookings'>('dashboard');
 
   const [destinations, setDestinations] = useState<Destination[]>([
@@ -262,3 +273,4 @@ export default function Admin() {
     </div>
   );
 }
+*/
