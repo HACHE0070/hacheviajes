@@ -8,6 +8,7 @@ type Trip = {
   id: string; title: string; city: string; heroMedia: string;
   packages: { id: string; name: string; basePrice: number; seatsLeft: number }[];
   itinerary: { id: string; day: number; title: string; description: string }[];
+  media?: { id: string; type: string; url: string }[];
 };
 
 export default function TripDetails() {
@@ -67,6 +68,20 @@ export default function TripDetails() {
           ))}
         </div>
       </div>
+
+      {trip.media && trip.media.some(m => m.type === 'image') && (
+        <div className="max-w-6xl mx-auto px-6 py-10">
+          <h2 className="text-2xl font-bold mb-4">Gallery</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {trip.media.filter(m => m.type === 'image').slice(0,6).map(m => (
+              <div key={m.id} className="relative overflow-hidden rounded-xl">
+                <img src={m.url} alt={trip.city} className="w-full h-48 object-cover hover:scale-105 transition-transform" />
+                <div className="absolute inset-0 ring-1 ring-white/10" />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

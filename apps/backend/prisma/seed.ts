@@ -40,7 +40,12 @@ async function main() {
           { day: 3, title: 'Dune Safari', description: '4x4 desert ride and campfire dinner.' }
         ]
       },
-      media: { create: [ { type: 'video', url: 'https://cdn.example.com/dakhla-1.mp4', tags: JSON.stringify(['hero']) } ] }
+      media: { create: [
+        { type: 'video', url: 'https://cdn.example.com/dakhla-1.mp4', tags: JSON.stringify(['hero']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1559599238-bf9eb31e596c?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['dakhla','desert']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['lagoon']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['sahara']) }
+      ] }
     },
     {
       title: 'Marrakesh: Cultural Retreat',
@@ -62,7 +67,12 @@ async function main() {
           { day: 3, title: 'Atlas Mountains', description: 'Day trip with lunch in the mountains.' }
         ]
       },
-      media: { create: [ { type: 'video', url: 'https://cdn.example.com/marrakesh-1.mp4', tags: JSON.stringify(['hero']) } ] }
+      media: { create: [
+        { type: 'video', url: 'https://cdn.example.com/marrakesh-1.mp4', tags: JSON.stringify(['hero']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1544989164-31dc3c645987?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['medina']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1532465612-ec0d0e837951?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['riads']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['majorelle']) }
+      ] }
     },
     {
       title: 'Agadir: Beach & Surf',
@@ -84,7 +94,12 @@ async function main() {
           { day: 3, title: 'Paradise Valley', description: 'Excursion with natural pools.' }
         ]
       },
-      media: { create: [ { type: 'video', url: 'https://cdn.example.com/agadir-1.mp4', tags: JSON.stringify(['hero']) } ] }
+      media: { create: [
+        { type: 'video', url: 'https://cdn.example.com/agadir-1.mp4', tags: JSON.stringify(['hero']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['beach']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1493558103817-58b2924bce98?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['surf']) },
+        { type: 'image', url: 'https://images.unsplash.com/photo-1523906630133-f6934a1ab1b9?q=80&w=1600&auto=format&fit=crop', tags: JSON.stringify(['coast']) }
+      ] }
     }
   ];
 

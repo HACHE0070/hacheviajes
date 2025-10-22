@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 type Trip = {
   id: string; title: string; city: string; heroMedia: string;
   packages: { id: string; name: string; basePrice: number }[];
+  media?: { type: string; url: string }[];
 };
 
 export default function Trips() {
@@ -31,9 +32,13 @@ export default function Trips() {
         {filtered.map((t) => (
           <motion.a key={t.id} href={`/trips/${t.id}`} className="glass overflow-hidden hover:scale-[1.02] transition-transform" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="relative h-48">
-              <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
-                <source src={t.heroMedia} type="video/mp4" />
-              </video>
+              {t.media?.some(m => m.type === 'image') ? (
+                <img src={t.media.find(m => m.type==='image')!.url} alt={t.city} className="absolute inset-0 w-full h-full object-cover" />
+              ) : (
+                <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
+                  <source src={t.heroMedia} type="video/mp4" />
+                </video>
+              )}
               <div className="absolute inset-0 ring-1 ring-white/10" />
             </div>
             <div className="p-4">
