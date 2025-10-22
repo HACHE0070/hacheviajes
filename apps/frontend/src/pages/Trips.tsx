@@ -29,11 +29,12 @@ export default function Trips() {
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {filtered.map((t) => (
-          <motion.a key={t.id} href={`/trips/${t.id}`} className="glass overflow-hidden" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.a key={t.id} href={`/trips/${t.id}`} className="glass overflow-hidden hover:scale-[1.02] transition-transform" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <div className="relative h-48">
               <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
                 <source src={t.heroMedia} type="video/mp4" />
               </video>
+              <div className="absolute inset-0 ring-1 ring-white/10" />
             </div>
             <div className="p-4">
               <div className="font-semibold text-lg">{t.title}</div>

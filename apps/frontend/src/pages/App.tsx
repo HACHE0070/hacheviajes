@@ -9,7 +9,7 @@ import Admin from './admin/Admin';
 
 export default function App() {
   return (
-    <div className="bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.05),_transparent),radial-gradient(ellipse_at_bottom,_rgba(255,255,255,0.04),_transparent)] min-h-screen pb-20">
+    <div className="bg-clouds min-h-screen pb-20">
       <NavBar />
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="pt-24">
         <Routes>
