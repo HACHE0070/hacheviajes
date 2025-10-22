@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  // Ensure correct asset URLs when hosted under /<repo>/ on GitHub Pages
+  base: process.env.BASE_PATH || '/',
   plugins: [react()],
   resolve: {
     alias: {
