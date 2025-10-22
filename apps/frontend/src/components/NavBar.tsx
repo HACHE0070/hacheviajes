@@ -15,6 +15,7 @@ export default function NavBar() {
               { to: '/', label: 'Home' },
               { to: '/trips', label: 'Available Trips' },
               { to: '/customize', label: 'Customize Your Trip' },
+              { to: '/admin', label: 'Admin' },
               { to: '/about', label: 'About' },
               { to: '/contact', label: 'Contact' },
             ].map((item) => (

@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   // Ensure correct asset URLs when hosted under /<repo>/ on GitHub Pages
-  base: process.env.BASE_PATH || '/',
+  base: process.env.BASE_PATH || (process.env.GITHUB_PAGES ? '/hacheviajes/' : '/'),
   plugins: [react()],
   resolve: {
     alias: {
