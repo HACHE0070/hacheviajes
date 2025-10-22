@@ -5,7 +5,7 @@ import Home from './Home';
 import Trips from './Trips';
 import TripDetails from './TripDetails';
 import Customize from './Customize';
-import Admin from './admin/Admin';
+// Admin panel removed
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
           <Route path="/trips" element={<Trips />} />
           <Route path="/trips/:id" element={<TripDetails />} />
           <Route path="/customize" element={<Customize />} />
-          <Route path="/admin" element={<Admin />} />
+          {/** Admin route removed */}
         </Routes>
       </motion.div>
     </div>
