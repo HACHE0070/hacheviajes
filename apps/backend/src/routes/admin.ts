@@ -37,4 +37,13 @@ router.get('/custom-trips', async (_req, res) => {
   res.json(list);
 });
 
+// List all bookings for admin with relations
+router.get('/bookings', async (_req, res) => {
+  const list = await prisma.booking.findMany({
+    include: { user: true, trip: true, package: true },
+    orderBy: { createdAt: 'desc' }
+  });
+  res.json(list);
+});
+
 export default router;
