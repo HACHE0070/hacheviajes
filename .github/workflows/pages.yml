@@ -54,6 +54,9 @@ jobs:
           # prevent Jekyll processing
           touch apps/frontend/dist/.nojekyll
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload artifact (frontend dist)
         uses: actions/upload-pages-artifact@v3
         with:
