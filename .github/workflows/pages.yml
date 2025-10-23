@@ -48,6 +48,8 @@ jobs:
           npm run build -w @hache/frontend
           # SPA fallback for GitHub Pages
           cp apps/frontend/dist/index.html apps/frontend/dist/404.html
+          # prevent Jekyll processing
+          touch apps/frontend/dist/.nojekyll
 
       - name: Upload artifact (frontend dist)
         uses: actions/upload-pages-artifact@v3
