@@ -16,6 +16,31 @@ export default function Trips() {
     api.get('/trips').then(r => setTrips(r.data));
   }, []);
 
+  // Ensure Dakhla card exists even if not in API yet
+  useEffect(() => {
+    if (trips.length === 0) return;
+    const hasDakhla = trips.some(t => t.city.toLowerCase() === 'dakhla');
+    if (!hasDakhla) {
+      setTrips((prev) => [
+        ...prev,
+        {
+          id: 'dakhla-placeholder',
+          title: 'Dakhla: Kite & Desert',
+          city: 'Dakhla',
+          heroMedia: 'https://videos.pexels.com/video-files/856879/856879-hd_1280_720_25fps.mp4',
+          packages: [
+            { id: 'p1', name: 'Desert Explorer', basePrice: 499 },
+            { id: 'p2', name: 'Kitesurf Adventure', basePrice: 799 },
+            { id: 'p3', name: 'Luxury Escape', basePrice: 1299 },
+          ],
+          media: [
+            { type: 'image', url: 'https://images.unsplash.com/photo-1589506363528-8d56a4972334?auto=format&fit=crop&w=1200&q=80' },
+          ],
+        },
+      ]);
+    }
+  }, [trips]);
+
   const filtered = useMemo(() => trips.filter(t => !city || t.city === city), [trips, city]);
   const cities = useMemo(() => Array.from(new Set(trips.map(t => t.city))), [trips]);
 

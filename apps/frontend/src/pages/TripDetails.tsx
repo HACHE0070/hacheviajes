@@ -14,6 +14,8 @@ type Trip = {
 export default function TripDetails() {
   const { id } = useParams();
   const [trip, setTrip] = useState<Trip | null>(null);
+  const [qtyByPackage, setQtyByPackage] = useState<Record<string, number>>({});
+  const [bookingMessage, setBookingMessage] = useState<string | null>(null);
 
   useEffect(() => {
     api.get(`/trips/${id}`).then(r => setTrip(r.data));
@@ -52,7 +54,46 @@ export default function TripDetails() {
             <div className="font-semibold text-xl mb-2">{p.name}</div>
             <div className="text-white/70 mb-2">From €{p.basePrice}</div>
             <div className="text-white/80 mb-4">Seats left: {p.seatsLeft}</div>
-            <a href="#" className="btn">View Details</a>
+
+            <div className="flex items-center gap-3 mb-3">
+              <label className="text-white/80 text-sm">Guests</label>
+              <input
+                type="number"
+                min={1}
+                max={Math.max(1, p.seatsLeft)}
+                className="glass px-3 py-2 w-24"
+                value={qtyByPackage[p.id] ?? 1}
+                onChange={(e) =>
+                  setQtyByPackage((prev) => ({ ...prev, [p.id]: Math.max(1, Math.min(Number(e.target.value || 1), Math.max(1, p.seatsLeft))) }))
+                }
+                disabled={p.seatsLeft <= 0}
+              />
+            </div>
+            <button
+              className="btn"
+              disabled={p.seatsLeft <= 0}
+              onClick={async () => {
+                try {
+                  setBookingMessage(null);
+                  const qty = qtyByPackage[p.id] ?? 1;
+                  const guests = Array.from({ length: qty }, () => ({ anon: true }));
+                  await api.post('/bookings', {
+                    userId: 'demo-user',
+                    tripId: trip.id,
+                    packageId: p.id,
+                    guests,
+                  });
+                  setBookingMessage('Booking confirmed! Seats reserved.');
+                } catch (e: any) {
+                  setBookingMessage(e?.response?.data?.error || 'Booking failed');
+                }
+              }}
+            >
+              {p.seatsLeft > 0 ? 'Book now' : 'Sold out'}
+            </button>
+            {bookingMessage && (
+              <div className="text-sm text-white/80 mt-2">{bookingMessage}</div>
+            )}
           </div>
         ))}
       </div>
