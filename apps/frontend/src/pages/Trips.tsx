@@ -49,6 +49,14 @@ export default function Trips() {
   const dakhla = useMemo(() => filtered.find(t => t.city.toLowerCase() === 'dakhla'), [filtered]);
   const others = useMemo(() => filtered.filter(t => t.city.toLowerCase() !== 'dakhla'), [filtered]);
 
+  // Open Dakhla modal when linked with ?dest=dakhla
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if ((params.get('dest') || '').toLowerCase() === 'dakhla') {
+      setShowDakhlaModal(true);
+    }
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="glass p-4 mb-6 flex gap-4 items-center">
