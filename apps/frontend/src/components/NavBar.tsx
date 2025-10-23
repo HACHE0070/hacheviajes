@@ -1,30 +1,45 @@
-import { Link, NavLink } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
+import { Plane } from 'lucide-react';
 
 export default function NavBar() {
+  const location = useLocation();
+  const isActive = (path: string) => location.pathname === path;
+  const navLinks = [
+    { path: '/', label: 'Home' },
+    { path: '/trips', label: 'Trips' },
+    { path: '/customize', label: 'Customize Trip' },
+    { path: '/about', label: 'About' },
+    { path: '/contact', label: 'Contact' },
+  ];
+
   return (
-    <div className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto max-w-7xl mt-4">
-        <div className="glass flex items-center justify-between px-6 py-3">
-          <Link to="/" className="font-bold text-2xl text-white drop-shadow" aria-label="Hache Viajes home">
-            <span className="inline-block align-middle mr-2 w-8 h-8 rounded-full bg-gradient-to-br from-white to-aqua shadow-[0_0_30px_rgba(129,216,208,0.6)]"></span>
-            <span className="align-middle">Hache Viajes</span>
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-transparent border-b"
+      style={{ borderColor: 'var(--primary-lighter)' }}
+    >
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 group" aria-label="Hache Viajes home">
+            <Plane className="h-8 w-8" style={{ color: 'var(--primary)' }} />
+            <span className="text-xl font-bold glow-text">Hache Viajes</span>
           </Link>
-          <nav className="flex gap-6 text-sm">
-            {[
-              { to: '/', label: 'Home' },
-              { to: '/trips', label: 'Available Trips' },
-              { to: '/customize', label: 'Customize Your Trip' },
-              { to: '/about', label: 'About' },
-              { to: '/contact', label: 'Contact' },
-            ].map((item) => (
-              <NavLink key={item.to} to={item.to} className={({ isActive }) => `nav-link ${isActive ? 'text-white' : ''}`}>
-                <motion.span whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>{item.label}</motion.span>
-              </NavLink>
+
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-all duration-300 hover:scale-105 nav-link ${
+                  isActive(link.path) ? 'text-[color:var(--primary)]' : ''
+                }`}
+                style={!isActive(link.path) ? { color: 'var(--text-secondary)' } : undefined}
+              >
+                {link.label}
+              </Link>
             ))}
-          </nav>
+          </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
