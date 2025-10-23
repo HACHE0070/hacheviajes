@@ -10,7 +10,7 @@ type Trip = {
   packages: { id: string; name: string; basePrice: number }[];
 };
 
-export default function FeaturedTrips() {
+export default function FeaturedTrips({ title = 'Featured Destinations' }: { title?: string }) {
   const [trips, setTrips] = useState<Trip[]>([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function FeaturedTrips() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
-      <h2 className="text-3xl font-bold mb-6">Featured Trips</h2>
+      <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 glow-text">{title}</h2>
       <div className="grid md:grid-cols-3 gap-6">
         {trips.map((t) => (
           <motion.a key={t.id} href={t.city.toLowerCase()==='dakhla' ? '/trips?dest=dakhla' : `/trips/${t.id}`} className="glass overflow-hidden hover:scale-[1.02] transition-transform" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
