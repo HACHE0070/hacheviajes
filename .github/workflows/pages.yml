@@ -28,29 +28,15 @@ jobs:
           node-version: '20'
           cache: npm
 
-      - name: Install dependencies (npm)
-        if: ${{ hashFiles('**/package-lock.json') != '' }}
-        run: npm ci
-
-      - name: Install dependencies (pnpm)
-        if: ${{ hashFiles('**/pnpm-lock.yaml') != '' }}
+      - name: Install frontend dependencies
         run: |
-          npm -g i pnpm
-          pnpm i --frozen-lockfile
-
-      - name: Install dependencies (yarn)
-        if: ${{ hashFiles('**/yarn.lock') != '' }}
-        run: |
-          npm -g i yarn
-          yarn --frozen-lockfile
+          npm ci -w @hache/frontend || npm install -w @hache/frontend
 
       - name: Build (best effort)
-        if: ${{ hashFiles('**/package.json') != '' }}
+        if: ${{ hashFiles('package.json') != '' }}
         run: |
           set -e
-          if [ -f package.json ]; then
-            npm run build || echo "No build script; continuing"
-          fi
+          npm run build || echo "No build script at root; continuing"
 
       - name: Build frontend workspace
         env:
