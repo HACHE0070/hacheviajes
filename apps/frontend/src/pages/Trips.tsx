@@ -11,7 +11,8 @@ type Trip = {
 export default function Trips() {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [city, setCity] = useState('');
-  const [showDakhlaModal, setShowDakhlaModal] = useState(false);
+  const [showPackagesModal, setShowPackagesModal] = useState(false);
+  const [selectedTripId, setSelectedTripId] = useState<string>('');
   const [bookingMsg, setBookingMsg] = useState<string | null>(null);
   const [selectedDates, setSelectedDates] = useState<Record<string, string>>({});
 
@@ -53,9 +54,36 @@ export default function Trips() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if ((params.get('dest') || '').toLowerCase() === 'dakhla') {
-      setShowDakhlaModal(true);
+      setSelectedTripId('dakhla');
+      setShowPackagesModal(true);
     }
   }, []);
+
+  // Local packages data for the horizontal cards
+  const tripsData: Record<string, { title: string; packages: { name: string; duration: string; price: string; features: string[]; popular?: boolean }[] }> = {
+    'dakhla': {
+      title: 'Dakhla Packages',
+      packages: [
+        { name: 'Desert Explorer', duration: '4 days, 3 nights', price: '€499', features: ['Round-trip flights from major cities', '20kg luggage allowance', '3 nights in 3-star hotel', 'Breakfast included', 'Desert safari, City tour'] },
+        { name: 'Kitesurf Adventure', duration: '6 days, 5 nights', price: '€799', features: ['Round-trip flights', '25kg luggage, sports gear included', '5 nights beach resort, HB', '3-day kitesurf lessons', 'Boat tour'], popular: true },
+        { name: 'Luxury Escape', duration: '8 days, 7 nights', price: '€1,299', features: ['Flights (biz upgrade avail), lounge', '7 nights 5★ all-inclusive, ocean view', 'Private instructor', 'Glamping experience', 'Spa treatments, private chef'] },
+      ],
+    },
+    'bali': {
+      title: 'Bali Packages',
+      packages: [
+        { name: 'Cultural Journey', duration: '7 days, 6 nights', price: '€899', features: ['Round-trip flights from Europe', '30kg luggage allowance', '6 nights in boutique villas', 'All meals included', 'Temple tours, traditional ceremonies'], popular: true },
+        { name: 'Surf Paradise', duration: '10 days, 9 nights', price: '€1,199', features: ['Direct flights included', 'Surfboard equipment provided', '9 nights beachfront accommodation', 'Daily surf lessons', 'Island hopping tours'] },
+      ],
+    },
+    'swiss-alps': {
+      title: 'Swiss Alps Packages',
+      packages: [
+        { name: 'Alpine Adventure', duration: '5 days, 4 nights', price: '€1,099', features: ['Round-trip flights to Zurich', 'Ski equipment included', '4 nights mountain lodge', 'All meals included', 'Ski passes, guided tours'] },
+        { name: 'Luxury Alpine', duration: '7 days, 6 nights', price: '€2,499', features: ['Business class flights', '6 nights 5-star resort', 'Private ski instructor', 'Helicopter tour', 'Gourmet dining, spa access'], popular: true },
+      ],
+    },
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
@@ -69,7 +97,7 @@ export default function Trips() {
       <div className="grid md:grid-cols-3 gap-6">
         {/* Dakhla destination card */}
         {dakhla && (
-          <div className="destination-card bg-white rounded-xl overflow-hidden shadow-xl cursor-pointer" onClick={() => setShowDakhlaModal(true)}>
+          <div className="destination-card bg-white rounded-xl overflow-hidden shadow-xl cursor-pointer" onClick={() => { setSelectedTripId('dakhla'); setShowPackagesModal(true); }}>
             <div className="relative h-64">
               <img src={dakhla.media?.find(m=>m.type==='image')?.url || 'https://images.unsplash.com/photo-1589506363528-8d56a4972334?auto=format&fit=crop&w=1200&q=80'} alt="Dakhla, Morocco" className="w-full h-full object-cover" />
               <div className="absolute inset-0 p-3 flex justify-between">
@@ -92,7 +120,7 @@ export default function Trips() {
                   <span>May 10-17, 2025</span>
                 </div>
               </div>
-              <button className="w-full py-2 rounded-md font-semibold bg-[#2c5530] text-white hover:bg-[#1e3a23]" onClick={(e)=>{e.stopPropagation(); setShowDakhlaModal(true);}}>View Packages & Prices</button>
+              <button className="w-full py-2 rounded-md font-semibold bg-[#2c5530] text-white hover:bg-[#1e3a23]" onClick={(e)=>{e.stopPropagation(); setSelectedTripId('dakhla'); setShowPackagesModal(true);}}>View Packages & Prices</button>
             </div>
           </div>
         )}
@@ -117,42 +145,40 @@ export default function Trips() {
         ))}
       </div>
 
-      {/* Packages Modal for Dakhla */}
-      {showDakhlaModal && dakhla && (
+      {/* Packages Modal */}
+      {showPackagesModal && selectedTripId && (
         <>
-          <div className="fixed inset-0 bg-black/70 z-40" onClick={() => setShowDakhlaModal(false)} />
+          <div className="fixed inset-0 bg-black/70 z-40" onClick={() => setShowPackagesModal(false)} />
           <div className="fixed z-50 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl w-[92%] max-w-5xl max-h-[90vh] overflow-y-auto">
             <div className="sticky top-0 bg-[#2c5530] text-white flex items-center justify-between px-5 py-4 rounded-t-xl">
-              <h2 className="font-semibold">Dakhla, Morocco - Available Packages</h2>
-              <button className="text-2xl leading-none" onClick={() => setShowDakhlaModal(false)}>×</button>
+              <h2 className="font-semibold">{tripsData[selectedTripId].title}</h2>
+              <button className="text-2xl leading-none" onClick={() => setShowPackagesModal(false)}>×</button>
             </div>
             <div className="grid md:grid-cols-3 gap-5 p-5">
-              {[
-                { label: 'Desert Explorer', duration: '4 days, 3 nights', price: 499, dates: ['Mar 15-18, 2025','Apr 5-8, 2025','May 10-13, 2025'] },
-                { label: 'Kitesurf Adventure', duration: '6 days, 5 nights', price: 799, dates: ['Mar 15-20, 2025','Apr 5-10, 2025','May 10-15, 2025'] },
-                { label: 'Luxury Escape', duration: '8 days, 7 nights', price: 1299, dates: ['Mar 15-22, 2025','Apr 5-12, 2025','May 10-17, 2025'] },
-              ].map((pkg, idx) => {
-                const pkgModel = dakhla.packages[idx] || dakhla.packages[0];
+              {tripsData[selectedTripId].packages.map((pkg, idx) => {
+                const baseTrip = selectedTripId === 'dakhla' ? dakhla : others.find(o => o.city.toLowerCase().includes(selectedTripId.replace('-', ' ')));
+                const pkgModel = baseTrip?.packages[idx] || baseTrip?.packages[0];
                 const pkgId = pkgModel?.id;
-                const selKey = pkg.label;
+                const selKey = pkg.name;
                 return (
-                  <div key={pkg.label} className={`relative bg-white rounded-lg shadow p-5 border ${idx===1 ? 'border-yellow-400' : 'border-transparent'}`}>
+                  <div key={pkg.name} className={`relative bg-white rounded-lg shadow p-5 border ${idx===1 ? 'border-yellow-400' : 'border-transparent'}`}>
                     <div className={`absolute -top-2 left-5 px-3 py-1 rounded-full text-xs font-bold ${idx===1 ? 'bg-yellow-400 text-black' : 'bg-[#2c5530] text-white'}`}>
-                      {idx===1 ? 'Most Popular' : idx===2 ? 'Luxury' : 'Budget Friendly'}
+                      {pkg.popular ? 'Most Popular' : idx===2 ? 'Luxury' : 'Budget Friendly'}
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold">{pkg.label}</h3>
+                    <h3 className="mt-4 text-lg font-semibold">{pkg.name}</h3>
                     <div className="text-sm text-gray-600">{pkg.duration}</div>
-                    <div className="text-2xl font-extrabold text-[#2c5530] my-3">€{pkg.price}</div>
+                    <div className="text-2xl font-extrabold text-[#2c5530] my-3">{pkg.price}</div>
                     <div className="mb-3">
                       <strong className="block text-sm mb-1">Available Dates:</strong>
                       <select
                         className="w-full border rounded px-3 py-2"
-                        value={selectedDates[selKey] || pkg.dates[0]}
+                        value={selectedDates[selKey] || 'Flexible'}
                         onChange={(e) => setSelectedDates((prev) => ({ ...prev, [selKey]: e.target.value }))}
                       >
-                        {pkg.dates.map((d) => (
-                          <option key={d} value={d}>{d}</option>
-                        ))}
+                        <option value="Flexible">Flexible</option>
+                        <option>Mar</option>
+                        <option>Apr</option>
+                        <option>May</option>
                       </select>
                     </div>
                     <button
@@ -161,12 +187,7 @@ export default function Trips() {
                         try {
                           setBookingMsg(null);
                           if (!pkgId) throw new Error('Package unavailable');
-                          await api.post('/bookings', {
-                            userId: 'demo-user',
-                            tripId: dakhla.id,
-                            packageId: pkgId,
-                            guests: [{ anon: true }],
-                          });
+                          await api.post('/bookings', { userId: 'demo-user', tripId: baseTrip?.id, packageId: pkgId, guests: [{ anon: true }] });
                           setBookingMsg('Booking confirmed!');
                         } catch (e: any) {
                           setBookingMsg(e?.response?.data?.error || 'Booking failed');
